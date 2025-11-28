@@ -22,7 +22,7 @@ public class MathOperators {
 
         // Use double for more precise division
         double num3 = 20.0;
-	double num4 = 7.0;
-	System.out.println("Precise Division: " + (num3 / num4) );
+        double num4 = 7.0;
+        System.out.println("Precise Division: " + (num3 / num4) );
     }
 }
