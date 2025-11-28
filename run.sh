@@ -17,5 +17,8 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/c
 #javac -d classes/ src/MathOperators.java
 #java MathOperators
 
-javac -d classes/ src/RelationalOperators.java
-java RelationalOperators
+#javac -d classes/ src/RelationalOperators.java
+#java RelationalOperators
+
+javac -d classes src/TernaryOperator.java
+java TernaryOperator
