@@ -25,5 +25,10 @@ public class ArrayMath {
             String greater = (arr[i] > arr[i+1]) ? "greater" : "not greater!";
             System.out.println(arr[i] + " > " + arr[i+1] + " ?? " + greater);
         }
+        // there is also a "for-each" loop
+        System.out.println("\nDemonstrating a for-each loop, or enhanced for loop"); 
+        for (int number: arr) {
+            System.out.println(number);
+        }
     }
 } 
