@@ -1,0 +1,69 @@
+/*
+To create a package, use the package keyword at the top of your Java source file.
+*/
+package com.example.myapp; // Declare a package 
+    public class MyClass { 
+        // Class code goes here
+    }
+}
+
+The folder structure on your filesystem should match the package declaration. 
+For instance, if your package is com.example.myapp, your source file should be located in the following path example.
+└/src
+└── com         <-- Level 1: Matches 'com'
+    └── example   <-- Level 2: Matches 'example'
+        └── myapp   <-- Level 3: Matches 'myapp'
+            └── MyClass.java── example
+
+/* 
+In Java, a class is a blueprint for creating objects and can contain 
+methods (functions) that define behaviors. For instance, the second line
+of this code displays the public class library, with methods like 
+calculatePrice() or applyDiscount().
+*/
+package com.example.library;  
+public class Library  {
+    private List <Book> books; // Private attribute to hold books  
+    public Library() {
+        books = new ArrayList<>(); // Initialize the list in the constructor 
+    } 
+    public void addBook(Book book) {
+        books.add(book); // Method to add a book to the library 
+    }
+}
+
+/*
+Every Java application needs an entry point, which is typically a main
+method within a public class. In this code, the second line of code 
+identifies the method named Main in the public class.
+*/
+package com.example.library;
+public class Main {
+    public static void main(String[] args) {
+        Library library = new Library(); // Create an instance of Library
+        // Add books to the library 
+        library.addBook(new Book("1984", "George Orwell"));
+	library.addBook(new Book("To Kill a Mockingbird", "Harper Lee"));
+	// Display all books 
+	library.displayBooks();
+    }
+}
+
+/* As your project grows, organizing your source files into directories 
+can keep your code manageable. The following example illustrates typical
+Java organizaton.
+*/
+ MyProject/
+ └── src/     # Source code goes here
+ └── lib/     # External libraries/JARs
+ └── resources/     # Configuration files, images, and others 
+ └── doc/     # Documentation
+ └── test/    # Test files
+
+/*When you need to use classes from other packages, you need to import them 
+at the top of your source file. These examples illustrate two examples of
+importing classes.*/
+import java.util.List;
+import java.util.ArrayList; // Importing classes from Java's standard library
+
+
