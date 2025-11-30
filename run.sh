@@ -23,5 +23,8 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/c
 #javac -d classes/ src/TernaryOperator.java
 #java TernaryOperator
 
-javac -d classes/ src/ArrayMath.java
-java ArrayMath
+#javac -d classes/ src/ArrayMath.java
+#java ArrayMath
+
+javac -d classes/ src/ArrayAccess.java
+java ArrayAccess
