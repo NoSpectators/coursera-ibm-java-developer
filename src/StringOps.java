@@ -34,7 +34,7 @@ public class StringOps {
         System.out.println("s5 matches regex ^W.* - " + s5.matches(regexStr));
         System.out.println("s7 matches regex ^W.* - " + s7.matches(regexStr));
         
-	String s9 = "    WASHINGTON    ";
+        String s9 = "    WASHINGTON    ";
         System.out.println("Equality check s7 and s9 - " + s7.equals(s9));
         s9 = s9.strip();
         System.out.println("Equality check after stripping s9 - " + s7.equals(s9)); 
