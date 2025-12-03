@@ -56,7 +56,7 @@ public class AreaCalculator {
                 System.out.println("Enter the radius of the sphere");
                 float radius = Float.parseFloat(scanner.nextLine());
                 System.out.println("The volume of a sphere with radius " + radius + " is " + volumeOfSphere(radius));
-	    } else if (choice == 5) {
+            } else if (choice == 5) {
                 System.out.println("Enter the length of any side of the cube");
                 float length = Float.parseFloat(scanner.nextLine());
                 System.out.println("The volume of a cube with side length " + length + " is " + volumeOfCube(length));
