@@ -25,15 +25,20 @@ public class AreaCalculator {
         return length * length * length;
     }
 
+    private static float volumeOfCuboid(float length, float breadth, float height) {
+        return length * breadth * height;
+    }
+    
     public static void main() {
-        System.out.println("Welcome to the area and volume alculator!");
+        System.out.println("Welcome to the area and volume calculator!");
         while (true) {
         // Add the menu to get the user input and invoke method here
             System.out.println("\nEnter 1 for area of a circle\n" +
 			    "Enter 2 for area of a square\n" + 
 			    "Enter 3 for area of a rectangle\n" +
 			    "Enter 4 for volume of a sphere\n" + 
-                            "Enter 5 for volume of a cube\n");
+                            "Enter 5 for volume of a cube\n" + 
+                            "Enter 6 for volume of a cuboid\n");
             Scanner scanner = new Scanner(System.in);
             int choice = Integer.parseInt(scanner.nextLine());
             if (choice == 1) {
@@ -60,6 +65,17 @@ public class AreaCalculator {
                 System.out.println("Enter the length of any side of the cube");
                 float length = Float.parseFloat(scanner.nextLine());
                 System.out.println("The volume of a cube with side length " + length + " is " + volumeOfCube(length));
+            } else if (choice == 6) {
+                System.out.println("Enter the length of the cuboid");
+                float length = Float.parseFloat(scanner.nextLine());
+                System.out.println("Enter the breadth of the cuboid");
+                float breadth = Float.parseFloat(scanner.nextLine());
+                System.out.println("Enter the height of the cuboid");
+                float height = Float.parseFloat(scanner.nextLine());
+                System.out.println("The volume of a cuboid with length " + 
+                                   length + " and breadth " + breadth + 
+                                   " and height " + height + " is " + 
+                                   volumeOfCuboid(length, breadth, height));
             } else {
                 System.out.println("invalid choice");
                 break;
