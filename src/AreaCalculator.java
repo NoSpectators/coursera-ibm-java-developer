@@ -21,6 +21,10 @@ public class AreaCalculator {
         return (4 * pi * radius * radius * radius) / 3;
     }
 
+    private static float volumeOfCube(float length) {
+        return length * length * length;
+    }
+
     public static void main() {
         System.out.println("Welcome to the area and volume alculator!");
         while (true) {
@@ -28,7 +32,8 @@ public class AreaCalculator {
             System.out.println("\nEnter 1 for area of a circle\n" +
 			    "Enter 2 for area of a square\n" + 
 			    "Enter 3 for area of a rectangle\n" +
-			    "Enter 4 for volume of a sphere");
+			    "Enter 4 for volume of a sphere\n" + 
+                            "Enter 5 for volume of a cube\n");
             Scanner scanner = new Scanner(System.in);
             int choice = Integer.parseInt(scanner.nextLine());
             if (choice == 1) {
@@ -51,6 +56,10 @@ public class AreaCalculator {
                 System.out.println("Enter the radius of the sphere");
                 float radius = Float.parseFloat(scanner.nextLine());
                 System.out.println("The volume of a sphere with radius " + radius + " is " + volumeOfSphere(radius));
+	    } else if (choice == 5) {
+                System.out.println("Enter the length of any side of the cube");
+                float length = Float.parseFloat(scanner.nextLine());
+                System.out.println("The volume of a cube with side length " + length + " is " + volumeOfCube(length));
 	    } else {
                 System.out.println("invalid choice");
                 break;
