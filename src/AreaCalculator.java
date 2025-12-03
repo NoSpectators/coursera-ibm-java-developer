@@ -16,15 +16,19 @@ public class AreaCalculator {
     private static float rectangle(float length, float breadth) {
         return length * breadth;
     }
-
+    
+    private static float volumeOfSphere(float radius) {
+        return (4 * pi * radius * radius * radius) / 3;
+    }
 
     public static void main() {
-        System.out.println("Welcome to the area calculator!");
+        System.out.println("Welcome to the area and volume alculator!");
         while (true) {
         // Add the menu to get the user input and invoke method here
-            System.out.println("\nEnter 1 for circle\n" +
-			    "Enter 2 for square\n" + 
-			    "Enter 3 for rectangle");
+            System.out.println("\nEnter 1 for area of a circle\n" +
+			    "Enter 2 for area of a square\n" + 
+			    "Enter 3 for area of a rectangle\n" +
+			    "Enter 4 for volume of a sphere");
             Scanner scanner = new Scanner(System.in);
             int choice = Integer.parseInt(scanner.nextLine());
             if (choice == 1) {
@@ -43,7 +47,11 @@ public class AreaCalculator {
                 System.out.println("The area of the rectangle with length " +
 				length + " and breadth of " + 
 				breadth + " is " + rectangle(length, breadth));
-            } else {
+            } else if (choice == 4) {
+                System.out.println("Enter the radius of the sphere");
+                float radius = Float.parseFloat(scanner.nextLine());
+                System.out.println("The volume of a sphere with radius " + radius + " is " + volumeOfSphere(radius));
+	    } else {
                 System.out.println("invalid choice");
                 break;
             }
