@@ -45,7 +45,7 @@ public class AreaCalculator {
 				breadth + " is " + rectangle(length, breadth));
             } else {
                 System.out.println("invalid choice");
-		break;
+                break;
             }
         }
     }
