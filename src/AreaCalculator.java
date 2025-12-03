@@ -31,7 +31,7 @@ public class AreaCalculator {
                 System.out.println("Enter the radius of the circle");
                 float radius = Float.parseFloat(scanner.nextLine());
                 System.out.println("The area of circle with radius " + radius + " is " + circle(radius));
-	    } else if (choice == 2) {
+            } else if (choice == 2) {
                 System.out.println("Enter the length of the square");
                 float length = Float.parseFloat(scanner.nextLine());
                 System.out.println("The area of square with side length " + length + " is " + square(length));
