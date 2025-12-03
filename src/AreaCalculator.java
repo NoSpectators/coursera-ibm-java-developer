@@ -60,7 +60,7 @@ public class AreaCalculator {
                 System.out.println("Enter the length of any side of the cube");
                 float length = Float.parseFloat(scanner.nextLine());
                 System.out.println("The volume of a cube with side length " + length + " is " + volumeOfCube(length));
-	    } else {
+            } else {
                 System.out.println("invalid choice");
                 break;
             }
