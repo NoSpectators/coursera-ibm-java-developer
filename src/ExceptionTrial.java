@@ -10,11 +10,11 @@ public class ExceptionTrial {
         
         while (true) {
             System.out.println(
-                "\nPress..." + 
-                "\n1 to add String, " + 
-                "\n2 to get String from a particular index, " + 
-                "\n3 to get the length string in any index, " + 
-                "\n4 to get all the strings in the array " + 
+                "\nPress..." +
+                "\n1 to add String, " +
+                "\n2 to get String from a particular index, " +
+                "\n3 to get the length string in any index, " +
+                "\n4 to get all the strings in the array " +
                 "\nany other key to exit");
             
             // read the user's choice
@@ -34,24 +34,44 @@ public class ExceptionTrial {
             }
             // Option 2: retrieve a string from a particular index
             else if (userAction.equals("2")) {
-                // Prompt the user to enter the index
-                System.out.println("Enter the index you want to retrieve ");
-                int retIdx = Integer.parseInt(scanner.nextLine());
-                // Retrieve and print the string at the specified index
-                System.out.println();        
-                System.out.println(strArr[retIdx]);
+                try {
+                    // Prompt the user to enter the index
+                    System.out.println("Enter the index you want to retrieve ");
+                    int retIdx = Integer.parseInt(scanner.nextLine());
+                    // Retrieve and print the string at the specified index
+                    System.out.println();
+                    System.out.println(strArr[retIdx]);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input! Please enter a valid integer.");
+                } catch(ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Invalid index! Please enter an index between 0 and " + (strArr.length - 1));
+                }
+
             }
             // Option 3: get the length of a string at a specific index
             else if (userAction.equals("3")) {
-                // Prompt the user to enter the index
-                int retIdx = Integer.parseInt(scanner.nextLine());
-                // Retrive the string at specified index and print its length
-                System.out.println(strArr[retIdx].length());
+                try {
+                    // Prompt the user to enter the index
+                    System.out.println("Enter the index you want to check the length of ");
+                    int retIdx = Integer.parseInt(scanner.nextLine());
+                    // Retrieve the string at specified index and print its length
+                    System.out.println("length of string at index " + retIdx  + ": " + strArr[retIdx].length());
+                } catch(NumberFormatException e) {
+                    System.out.println("Invalid input! Please enter a valid integer.");
+                } catch(ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Invalid index! Please enter an index between 0 and " + (strArr.length -1));
+                } catch(NullPointerException e) {
+                    System.out.println("No string exists at the specified index!");
+                }
             }
             // Option 4: get all the strings in the array
             else if (userAction.equals("4")) {
                 for (int i = 0; i < 5; i++) {
-                    System.out.println(strArr[i]);
+                    if (strArr[i] != null) {
+                        System.out.println(strArr[i]);
+                    } else {
+                        System.out.println("Index " + i + ": (null");
+                    }
                 }
             } 
             // exit the program if the user enters any other key
@@ -59,5 +79,7 @@ public class ExceptionTrial {
                 break;
             }
         }
+        // Close scanner to avoid resource leak
+        scanner.close();
     } 
 }
