@@ -8,7 +8,7 @@ public class ExceptionTrial {
         String[] strArr = new String[5];
         int strIdx = 0;
         
-	while (true) {
+        while (true) {
             System.out.println(
                 "\nPress..." + 
                 "\n1 to add String, " + 
@@ -17,7 +17,7 @@ public class ExceptionTrial {
                 "\n4 to get all the strings in the array " + 
                 "\nany other key to exit");
             
-	    // read the user's choice
+            // read the user's choice
             String userAction = scanner.nextLine();
            
             // Option 1: add string to array
@@ -39,7 +39,7 @@ public class ExceptionTrial {
                 int retIdx = Integer.parseInt(scanner.nextLine());
                 // Retrieve and print the string at the specified index
                 System.out.println();        
-		System.out.println(strArr[retIdx]);
+                System.out.println(strArr[retIdx]);
             }
             // Option 3: get the length of a string at a specific index
             else if (userAction.equals("3")) {
