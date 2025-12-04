@@ -20,7 +20,7 @@ public class ExceptionTrial {
 	    // read the user's choice
 	    String userAction = scanner.nextLine();
            
-	    // Option 1: add string to array
+            // Option 1: add string to array
             if (userAction.equals("1")) {
                 if (strIdx == 5) {
                     System.out.println("There are already 5 strings in the array!");
@@ -32,7 +32,7 @@ public class ExceptionTrial {
                     strArr[strIdx++] = inputStr;
                 }
             }
-	    // Option 2: retrieve a string from a particular index
+            // Option 2: retrieve a string from a particular index
             else if (userAction.equals("2")) {
                 // Prompt the user to enter the index
                 System.out.println("Enter the index you want to retrieve ");
@@ -41,7 +41,7 @@ public class ExceptionTrial {
                 System.out.println();        
 		System.out.println(strArr[retIdx]);
             }
-	    // Option 3: get the length of a string at a specific index
+            // Option 3: get the length of a string at a specific index
             else if (userAction.equals("3")) {
                 // Prompt the user to enter the index
                 int retIdx = Integer.parseInt(scanner.nextLine());
