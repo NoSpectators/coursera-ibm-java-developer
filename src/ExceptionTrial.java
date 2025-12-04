@@ -48,6 +48,16 @@ public class ExceptionTrial {
                 // Retrive the string at specified index and print its length
                 System.out.println(strArr[retIdx].length());
             }
+            // Option 4: get all the strings in the array
+            else if (userAction.equals("4")) {
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(strArr[i]);
+                }
+            } 
+            // exit the program if the user enters any other key
+            else {
+                break;
+            }
         }
     } 
 }
