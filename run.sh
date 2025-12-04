@@ -32,5 +32,8 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/c
 #javac -d classes/ src/StringOps.java
 #java StringOps
 
-javac -d classes/ src/AreaCalculator.java
-java AreaCalculator
+#javac -d classes/ src/AreaCalculator.java
+#java AreaCalculator
+
+javac -d classes/ src/ExceptionTrial.java
+java ExceptionTrial
