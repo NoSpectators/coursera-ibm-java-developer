@@ -18,7 +18,7 @@ public class ExceptionTrial {
                 "\nany other key to exit");
             
 	    // read the user's choice
-	    String userAction = scanner.nextLine();
+            String userAction = scanner.nextLine();
            
             // Option 1: add string to array
             if (userAction.equals("1")) {
