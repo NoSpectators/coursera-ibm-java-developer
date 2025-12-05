@@ -35,5 +35,9 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/c
 #javac -d classes/ src/AreaCalculator.java
 #java AreaCalculator
 
-javac -d classes/ src/ExceptionTrial.java
-java ExceptionTrial
+#javac -d classes/ src/ExceptionTrial.java
+#java ExceptionTrial
+
+# two files where one class is shared by both files (the custom exception class)
+javac -d classes/ src/StudentManagement.java src/StudentUnderAgeException.java
+java StudentManagement
