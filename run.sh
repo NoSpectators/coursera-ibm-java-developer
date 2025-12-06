@@ -39,5 +39,8 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/c
 #java ExceptionTrial
 
 # two files where one class is shared by both files (the custom exception class)
-javac -d classes/ src/StudentManagement.java src/StudentUnderAgeException.java src/StudentInvalidNameException.java
-java StudentManagement
+#javac -d classes/ src/StudentManagement.java src/StudentUnderAgeException.java src/StudentInvalidNameException.java
+#java StudentManagement
+
+javac -d classes/ src/GroceryShopping.java src/ItemNotFoundException.java
+java GroceryShopping
