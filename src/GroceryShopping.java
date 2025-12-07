@@ -1,20 +1,21 @@
+import java.util.Arrays; // to print array
 import java.util.Scanner;
 
 public class GroceryShopping {
     public static int searchItem(String[] items, String item) {
-        // int itemIndex = -1;
         for (int i = 0; i < items.length; i++) {
             if (items[i].equalsIgnoreCase(item)) {
-                // itemIndex = i;
                 return i;
             }
         }
         return -1;
-
-//        if (itemIndex == -1) {
-//            return "Item " + item + " not found. Please try again.";
-//        }
     }
+
+    public static float calculateAveragePrice(float totalBill, int totalItems) {
+        System.out.println(totalItems+ " items in cart.");
+        return totalBill / (float)totalItems;
+    }
+
     public static void main(String[] args) throws ItemNotFoundException{
         // declare variables
         String[] item = new String[10];
@@ -36,6 +37,7 @@ public class GroceryShopping {
         // outer infinite loop for multiple users
         while (true) {
             // inner infinite loop for a single user's shopping
+            int totalItems = 0;
             float totalBill = 0.0f;
             while (true) {
                 try {
@@ -56,14 +58,19 @@ public class GroceryShopping {
                     }
 
                     // ask for the quantity of the item
+                    // add quantity to the total items
+                    // calculate cost for the item and add it to the total
                     System.out.println("Enter the quantity of the item: ");
                     int quantity = Integer.parseInt(scanner.nextLine());
-
-                    // calculate cost for the item and add it to the total
+                    totalItems += quantity;
                     float itemCost = price[itemIndex] * quantity;
                     totalBill += itemCost;
-
                     System.out.println("Added " + quantity + " x " + item[itemIndex] + " to the bill. Current total: $" + totalBill);
+
+                    // average price of current cart
+                    float averagePrice = calculateAveragePrice(totalBill, totalItems);
+                    System.out.println("average cost of items in cart: " + averagePrice);
+
                 } catch(ItemNotFoundException e) {
                     System.out.println(e.getMessage());
                 } catch (Exception e) {
