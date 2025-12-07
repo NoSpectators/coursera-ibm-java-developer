@@ -1,6 +1,20 @@
 import java.util.Scanner;
 
 public class GroceryShopping {
+    public static int searchItem(String[] items, String item) {
+        // int itemIndex = -1;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].equalsIgnoreCase(item)) {
+                // itemIndex = i;
+                return i;
+            }
+        }
+        return -1;
+
+//        if (itemIndex == -1) {
+//            return "Item " + item + " not found. Please try again.";
+//        }
+    }
     public static void main(String[] args) throws ItemNotFoundException{
         // declare variables
         String[] item = new String[10];
@@ -35,15 +49,8 @@ public class GroceryShopping {
                         System.out.println("Thank you for shopping with us!");
                         break;
                     }
-                    // find the index of the item in the array
-                    int itemIndex = -1;
-                    for (int i = 0; i < item.length; i++) {
-                        if (item[i].equalsIgnoreCase(inputItem)) {
-                            itemIndex = i;
-                            break;
-                        }
-                    }
 
+                    int itemIndex = searchItem(item, inputItem);
                     if (itemIndex == -1) {
                         throw new ItemNotFoundException("Item " + inputItem + " not found. Please try again.");
                     }
