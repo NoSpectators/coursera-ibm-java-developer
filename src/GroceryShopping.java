@@ -71,6 +71,13 @@ public class GroceryShopping {
                     float averagePrice = calculateAveragePrice(totalBill, totalItems);
                     System.out.println("average cost of items in cart: " + averagePrice);
 
+                    float discountedTotal = 0.0f;
+                    if (totalBill > 100.00) {
+                        discountedTotal = totalBill - (totalBill * .10f);
+                    }
+                    System.out.println("discounted total: " + discountedTotal);
+
+
                 } catch(ItemNotFoundException e) {
                     System.out.println(e.getMessage());
                 } catch (Exception e) {
