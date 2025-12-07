@@ -13,26 +13,30 @@ public class GroceryShopping {
 
     public static float calculateAveragePrice(float totalBill, int totalItems) {
         System.out.println(totalItems+ " items in cart.");
-        return totalBill / (float)totalItems;
+        if (totalItems > 0) {
+            return totalBill / (float)totalItems;
+        }
+        return 0.0f;
     }
 
-    public static void main(String[] args) throws ItemNotFoundException{
+    public static void main(String[] args) throws ItemNotFoundException, InsufficientStockException{
         // declare variables
         String[] item = new String[10];
         float[] price = new float[10];
+        int[] stock = new int[10];
         Scanner scanner = new Scanner(System.in);
 
         // Populate the arrays with some sample data
-        item[0] = "milk"; price[0] = 5.0f;
-        item[1] = "cheese"; price[1] = 3.50f;
-        item[2] = "donuts"; price[2] = 6.0f;
-        item[3] = "toothpaste"; price[3] = 2.75f;
-        item[4] = "ground beef"; price[4] = 6.85f;
-        item[5] = "chicken stock"; price[5] = 1.25f;
-        item[6] = "tomatoes"; price[6] = 5.0f;
-        item[7] = "salad greens"; price[7] = 3.90f;
-        item[8] = "apples"; price[8] = 8.0f;
-        item[9] = "lunch meat"; price[9] = 5.0f;
+        item[0] = "milk"; price[0] = 5.0f; stock[0] = 5;
+        item[1] = "cheese"; price[1] = 3.50f; stock[1] = 10;
+        item[2] = "donuts"; price[2] = 6.0f; stock[2] = 8;
+        item[3] = "toothpaste"; price[3] = 2.75f; stock[3] = 4;
+        item[4] = "ground beef"; price[4] = 6.85f; stock[4] = 6;
+        item[5] = "chicken stock"; price[5] = 1.25f; stock[5] = 3;
+        item[6] = "tomatoes"; price[6] = 5.0f; stock[6] = 10;
+        item[7] = "salad greens"; price[7] = 3.90f; stock[7] = 5;
+        item[8] = "apples"; price[8] = 8.0f; stock[8] = 20;
+        item[9] = "lunch meat"; price[9] = 5.0f; stock[9] = 10;
 
         // outer infinite loop for multiple users
         while (true) {
@@ -60,8 +64,16 @@ public class GroceryShopping {
                     // ask for the quantity of the item
                     // add quantity to the total items
                     // calculate cost for the item and add it to the total
+                    System.out.println("Stock available for purchase: " + stock[itemIndex]);
                     System.out.println("Enter the quantity of the item: ");
                     int quantity = Integer.parseInt(scanner.nextLine());
+                    if (stock[itemIndex] < quantity) {
+                        throw new InsufficientStockException("Insufficient stock. Please decrease quantity.");
+                    }
+                    // decrease stock
+                    stock[itemIndex] -= quantity;
+
+
                     totalItems += quantity;
                     float itemCost = price[itemIndex] * quantity;
                     totalBill += itemCost;
@@ -78,7 +90,9 @@ public class GroceryShopping {
                     System.out.println("discounted total: " + discountedTotal);
 
 
-                } catch(ItemNotFoundException e) {
+                } catch (ItemNotFoundException e) {
+                    System.out.println(e.getMessage());
+                } catch (InsufficientStockException e) {
                     System.out.println(e.getMessage());
                 } catch (Exception e) {
                     System.out.println("Invalid input. Please try again.");
@@ -93,5 +107,6 @@ public class GroceryShopping {
             }
         }
         scanner.close();
+        System.out.println("--------------------------------");
     }
 }

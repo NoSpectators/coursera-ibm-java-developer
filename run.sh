@@ -42,5 +42,5 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/c
 #javac -d classes/ src/StudentManagement.java src/StudentUnderAgeException.java src/StudentInvalidNameException.java
 #java StudentManagement
 
-javac -d classes/ src/GroceryShopping.java src/ItemNotFoundException.java
+javac -d classes/ src/GroceryShopping.java src/ItemNotFoundException.java src/InsufficientStockException.java
 java GroceryShopping
