@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/classes
+export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/intro/classes
 
 # java only works for single-file program
 #java HelloWorld.java
