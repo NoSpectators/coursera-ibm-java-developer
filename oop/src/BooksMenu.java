@@ -45,7 +45,7 @@ public class BooksMenu {
                 // bkIdx++;
             } else if (userAction.equals("3")) {
                 System.out.println("enter book 1 index");
-		int bk1Idx = Integer.parseInt(scanner.nextLine());
+                int bk1Idx = Integer.parseInt(scanner.nextLine());
                 System.out.println("enter book 2 index"); 
                 int bk2Idx = Integer.parseInt(scanner.nextLine());
                 if (books[bk1Idx] != null && books[bk2Idx] != null) {
