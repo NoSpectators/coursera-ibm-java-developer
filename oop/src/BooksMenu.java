@@ -30,19 +30,26 @@ public class BooksMenu {
                     System.out.println("10 books added already. Cannot add any more books!");
                     continue;
                 }
+                System.out.println("Which constructor do you want to use? Press 1 for default, " +
+                                   "any other key for overloaded constructor");
+                String constructor = scanner.nextLine();
                 System.out.println("Enter book title");
                 String tmpTitle = scanner.nextLine();
                 System.out.println("Enter book author");
                 String tmpAuthor = scanner.nextLine();
                 System.out.println("Enter book price");
                 float tmpPrice = Float.parseFloat(scanner.nextLine());
-                Book bkTmp = new Book();
-                bkTmp.setTitle(tmpTitle);
-                bkTmp.setAuthor(tmpAuthor);
-                bkTmp.setPrice(tmpPrice);
-                books[bkIdx++] = bkTmp;
+                if (constructor.equals("1")) {
+                    Book bkTmp = new Book();
+                    bkTmp.setTitle(tmpTitle);
+                    bkTmp.setAuthor(tmpAuthor);
+                    bkTmp.setPrice(tmpPrice);
+                    books[bkIdx++] = bkTmp;
                 // books[bkIdx] = bkTmp;
                 // bkIdx++;
+                } else {
+                    books[bkIdx++] = new Book(tmpTitle, tmpAuthor, tmpPrice);
+                }
             } else if (userAction.equals("3")) {
                 System.out.println("enter book 1 index");
                 int bk1Idx = Integer.parseInt(scanner.nextLine());
