@@ -8,15 +8,25 @@ public class BooksMenu {
             return book2;
         }
     }
-    public static void main(String[] args) {
+
+    public static void compareBooks(Book book1, Book book2) {
+        if (book1.equals(book2)) {
+            System.out.println("The books are the same");
+        } else {
+            System.out.println("The books are not the same");   
+        }
+    }
+
+    public static void main(String[] args) throws CloneNotSupportedException {
         Scanner scanner = new Scanner(System.in);
         Book[] books = new Book[10];
         int bkIdx = 0;
         while(true) {
             System.out.println("\nPress ... " + 
 			    "\n1 to view books, " + 
-			    "\n2 to add books, " + 
-			    "\n3 to compare two books' prices, " + 
+			    "\n2 to add books via default constructor or overload constructor, " + 
+			    "\n3 to compare two books' prices, " +
+                            "\n4 to clone a book, " +  
 			    "\nany other key to exit");
             String userAction = scanner.nextLine();
             if (userAction.equals("1")) {
@@ -60,6 +70,12 @@ public class BooksMenu {
 				    getExpensiveBook(books[bk1Idx], books[bk2Idx]));
                 } else {
                     System.out.println("One or both books do not exist!"); 
+                }
+            } else if (userAction.equals("4")) {
+                System.out.println("enter the index of book to clone");
+                int cloneIdx = Integer.parseInt(scanner.nextLine());
+                if (books[cloneIdx] != null) {
+                    books[bkIdx++] = (Book)books[cloneIdx].clone();
                 }
             } else {
                 break;
