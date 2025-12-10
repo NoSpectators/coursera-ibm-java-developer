@@ -13,11 +13,14 @@ public class BookAccess {
         System.out.println(priceCmp); 
     }
 
-    public static void main(String[] args) {
-        Book book1 = new Book();  
-        book1.setTitle("Atomic Habits");
-        book1.setAuthor("James Clear");
-        book1.setPrice(30.00f);
+    public static void main(String[] args) throws CloneNotSupportedException {
+        // use the parameterized constructor in Book.java 
+        Book book1 = new Book("Atomic Habits", "James Clear", 30.0f);
+
+        // Book book1 = new Book();  
+        // book1.setTitle("Atomic Habits");
+        // book1.setAuthor("James Clear");
+        // book1.setPrice(30.00f);
 
         Book book2 = new Book();
         book2.setTitle("Sapiens");
@@ -26,8 +29,15 @@ public class BookAccess {
 
         System.out.println("The first book object is ");
         System.out.println(book1);
-        System.out.println("The second book object is ");
+        System.out.println();
+	System.out.println("The second book object is ");
         System.out.println(book2);
+        System.out.println();
         comparePrices(book1, book2);
+
+        System.out.println();
+        Book book3 = (Book)(book1.clone());
+        System.out.println("The third book cloned object is ");
+        System.out.println(book3);
     }
 }
