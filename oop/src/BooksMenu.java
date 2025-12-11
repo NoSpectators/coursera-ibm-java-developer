@@ -26,7 +26,8 @@ public class BooksMenu {
 			    "\n1 to view books, " + 
 			    "\n2 to add books via default constructor or overload constructor, " + 
 			    "\n3 to compare two books' prices, " +
-                            "\n4 to clone a book, " +  
+                            "\n4 to clone a book, " + 
+                            "\n5 to change the price of a book, " + 
 			    "\nany other key to exit");
             String userAction = scanner.nextLine();
             if (userAction.equals("1")) {
@@ -77,7 +78,15 @@ public class BooksMenu {
                 if (books[cloneIdx] != null) {
                     books[bkIdx++] = (Book)books[cloneIdx].clone();
                 }
-            } else {
+            } else if (userAction.equals("5")) {
+                System.out.println("Enter index of book to change price");
+                int bk2ChgIdx = Integer.parseInt(scanner.nextLine());
+                if (books[bk2ChgIdx] != null) {
+                    System.out.println("Enter the new price for the book");
+                    float newPrice = Float.parseFloat(scanner.nextLine());
+                    books[bk2ChgIdx].setPrice(newPrice); 
+                }
+	    } else {
                 break;
             }
         } 
