@@ -5,6 +5,7 @@ public class Student {
     private double grade;
     private boolean isActive;
 
+
     // getters
     public String getStudentId() {
         return this.studentId;
