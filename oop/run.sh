@@ -14,6 +14,12 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/o
 #javac -d classes/ src/Student.java src/StudentRegistry.java
 #java StudentRegistry
 
+#javac -d classes/ src/Car.java src/CarMenu.java
+#java CarMenu
 
-javac -d classes/ src/Car.java src/CarMenu.java
-java CarMenu
+#javac -d classes/ src/Vehicle.java src/VehicleMenu.java
+#java VehicleMenu
+
+
+javac -d classes/ src/Shape.java src/Circle.java src/ShapeMenu.java
+java ShapeMenu
