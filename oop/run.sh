@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/oop/classes
+#export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/oop/classes
 
 #javac -d classes/ src/Book.java src/BookAccess.java
 #java BookAccess
@@ -23,6 +23,8 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/o
 #javac -d classes/ src/Shape.java src/Circle.java src/ShapeMenu.java
 #java ShapeMenu
 
+#javac -d classes/ src/Person.java src/PersonMenu.java
+#java PersonMenu
 
-javac -d classes/ src/Person.java src/PersonMenu.java
-java PersonMenu
+javac -d classes/ src/ClassWithAbstractMeth.java
+java ClassWithAbstractMeth
