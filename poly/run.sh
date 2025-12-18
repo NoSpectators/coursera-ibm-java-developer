@@ -11,5 +11,8 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/p
 #java AnimalFarmAbstract 
 
 
-javac -d classes/ src/Bulb.java src/BulbOperate.java
-java BulbOperate 
+#javac -d classes/ src/Bulb.java src/BulbOperate.java
+#java BulbOperate 
+
+javac -d classes/ src/Speaker.java src/SpeakerOperate.java
+java SpeakerOperate
