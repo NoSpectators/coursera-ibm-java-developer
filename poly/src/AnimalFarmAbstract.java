@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class AnimalFarmAbstract {
+    public static void main(String[] args) {
+        // the key polymorphism here are the object declarations:
+        // type Animal, but instances of specific classes
+        // each sound is specific based on the object type
+        // Animal a1 = new Dog("Sami");
+        // Animal a2 = new Cat("Hershey");
+        // Animal a3 = new Cow("Molly");
+        // System.out.println("animal1 sound " + a1.sound());
+        // System.out.println("animal2 sound " + a2.sound());
+        // System.out.println("animal3 sound " + a3.sound());
+        
+        Scanner scanner = new Scanner(System.in);
+        AnimalAbstract[] animals = new AnimalAbstract[10]; 
+        int anmlIdx = 0;
+        while (true) {
+            System.out.println("Press 1 to view the animals, " + 
+                               "\n2 to add animals, " + 
+                               "\nany other key to exit");
+            String userAction = scanner.nextLine();
+            if (userAction.equals("1")) {
+                for (int i=0; i<animals.length;i++) {
+                    if (animals[i] != null) {
+                        System.out.println(animals[i]);
+                    }
+                }
+            } else if (userAction.equals("2")) {
+                if (anmlIdx == 10) {
+                    System.out.println("10 animals added already. Cannot add any more animals!");
+                    continue;
+                }
+                System.out.println("Which animal do you want to create? \nPress 1 for dog," + 
+                                   "\n2 for cat " + 
+                                   "\n3 for cow");
+                String animalChoice = scanner.nextLine();
+                if (animalChoice.equals("1")) {
+                    System.out.println("Enter the name of the dog");
+                    String dogName = scanner.nextLine();
+                    System.out.println("what food does it eat?");
+                    String dogFood = scanner.nextLine();
+                    AnimalAbstract anmlTmp = new Dog(dogName);
+                    anmlTmp.setFood(dogFood);
+                    animals[anmlIdx++] = anmlTmp;
+                } else if (animalChoice.equals("2")) {
+                    System.out.println("Enter the name of the cat");
+                    String catName = scanner.nextLine();
+                    System.out.println("what food does it eat?");
+                    String catFood = scanner.nextLine();
+                    AnimalAbstract anmlTmp = new Cat(catName);
+                    anmlTmp.setFood(catFood);
+                    animals[anmlIdx++] = anmlTmp;
+                } else if (animalChoice.equals("3")) {
+                    System.out.println("Enter the name of the cow");
+                    String cowName = scanner.nextLine();
+                    System.out.println("what food does it eat?");
+                    String cowFood = scanner.nextLine();
+                    AnimalAbstract anmlTmp = new Cow(cowName);
+                    anmlTmp.setFood(cowFood);
+                    animals[anmlIdx++] = anmlTmp;
+                }
+            } else {
+                break;
+            }
+        }
+    }
+}
