@@ -19,3 +19,4 @@
 
 
 javac -d classes/ src/MusicShop.java
+java MusicShop

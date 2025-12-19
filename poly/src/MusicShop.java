@@ -51,7 +51,7 @@ class StringedInstrument extends Instrument {
     }
     @Override
     public String getInstrumentDetails() {
-        return super.getInstrumentDetails() + "Number of strings: " + this.numberOfStrings;
+        return super.getInstrumentDetails() + ", Strings: " + this.numberOfStrings;
     }
 
     public int getNumberOfStrings() {
@@ -147,3 +147,54 @@ class Piano extends Instrument implements Tunable, Maintainable {
 //   2. Iterates through the array calling play() for each instrument
 //   3. Demonstrates polymorphism by testing if each instrument is Tunable or Maintainable
 //      and if so, calls the appropriate methods
+public class MusicShop {
+    public static void main(String[] args) {
+        Instrument[] instruments = new Instrument[3];
+        Guitar g1 = new Guitar("Fender Stratocaster", 2020, 6, "electric");
+        Guitar g2 = new Guitar("Martin", 2018, 12, "acoustic"); 
+        Piano p = new Piano("Steinway", 2015, true);
+        
+        // populate the array with Instrument objects
+        instruments[0] = g1;
+        instruments[1] = g2;
+        instruments[2] = p;
+
+        // call play() method for each instrument
+        for (int i = 0; i < instruments.length; i++) {
+            System.out.println(instruments[i].play());
+            System.out.println(instruments[i].getInstrumentDetails());
+	}
+
+        // demonstrate polymorphism by testing if each instrument is Tunable or Maintainable
+        // if so, call appropriate methods
+        // note: this uses a for-each loop to use instanceOf easier
+        System.out.println("\n======MAINTAINING INSTRUMENTS======");
+        for (Instrument instrument : instruments) {
+            System.out.println("Working with: " + instrument.getName());
+
+            // check if instrument is tunable
+            if (instrument instanceof Tunable) {
+                // declare a Tunable instrument by casting the instrument object to Tunable
+                Tunable tuneableInstrument = (Tunable) instrument;
+                System.out.println(tuneableInstrument.tune());
+                System.out.println(tuneableInstrument.adjustPitch(true));
+                
+            }
+            // check if instrument is maintainable
+            if (instrument instanceof Maintainable) {
+                // note: two ways to cast the instrument object to Maintainable and call methods
+               
+                // explicitly naming a variable
+                //Maintainable maintainableInstrument = (Maintainable) instrument;
+                //System.out.println(maintainableInstrument.clean());
+                //System.out.println(maintainableInstrument.inspect());
+
+                // alternate syntax (in-line casting) 
+                System.out.println( ((Maintainable) instrument).clean() );
+                System.out.println( ((Maintainable) instrument).inspect() );
+	    }
+            System.out.println("------");
+        }
+        
+    }
+}
