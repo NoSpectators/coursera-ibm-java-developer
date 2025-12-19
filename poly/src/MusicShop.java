@@ -35,10 +35,7 @@ interface Maintainable {
     String inspect();
 }
 
-// concrete class StringedInstrument that extends Instrument
-// - implementation of the abstract play() method
-// - override getInstrumentDetails() to include number of strings
-// can only have one public class per java file
+// concrete class StringedInstrument that extends abstract class Instrument
 class StringedInstrument extends Instrument {
     // additional field for instrument of this specific type 
     private int numberOfStrings;
@@ -47,6 +44,7 @@ class StringedInstrument extends Instrument {
         super(name, year); // do NOT use "this.name" etc here. object doesn't exist yet.
         this.numberOfStrings = numberOfStrings;
     }
+    // mandatory implementation of abstract method
     @Override
     public String play() {
         return "Playing the stringed instrument";
@@ -55,11 +53,13 @@ class StringedInstrument extends Instrument {
     public String getInstrumentDetails() {
         return super.getInstrumentDetails() + "Number of strings: " + this.numberOfStrings;
     }
+
+    public int getNumberOfStrings() {
+        return this.numberOfStrings;
+    }
 }
 
 // concrete class Guitar that extends StringedInstrument 
-// - constructor that initializes all fields
-// - implementation of all required interface methods
 class Guitar extends StringedInstrument implements Tunable, Maintainable {
     private String guitarType; // acoustic, electric, etc 
    
@@ -67,7 +67,13 @@ class Guitar extends StringedInstrument implements Tunable, Maintainable {
     public Guitar(String name, int year, int numberOfStrings, String guitarType) {
         super(name, year, numberOfStrings); // call parent constructor
         this.guitarType = guitarType;
-    } 
+    }
+
+    // mandatory implementation of the abstract play() method
+    @Override
+    public String play() {
+        return "Playing the " + this.guitarType + " guitar with " + getNumberOfStrings() + " strings"; 
+    }
 
     // Tunable interface methods
     @Override
@@ -86,18 +92,53 @@ class Guitar extends StringedInstrument implements Tunable, Maintainable {
     }
     @Override
     public String inspect() {
-        return "Inspecting the " + this.guitarType + "guitar from " + this.year; 
+        return "Inspecting the " + this.guitarType + "guitar from " + year; 
     }
 }
 
-// Step 6: Create a concrete class Piano that extends Instrument
-// and implements Tunable and Maintainable
-// This should include:
-// - private boolean isGrand
-// - constructor that initializes all fields
+// concrete class Piano that extends abstract class Instrument
 // - implementation of the abstract play() method
-// - implementation of all required interface methods
+class Piano extends Instrument implements Tunable, Maintainable {
+    private boolean isGrand;
+    
+    public Piano(String name, int year, boolean isGrand) {
+        super(name, year); // call parent constructor
+        this.isGrand = isGrand;
+    }
 
+    // implementation of abstract play() method
+    @Override 
+    public String play() {
+        return "Playing the " + (this.isGrand ? "grand" : "upright") + " piano from " + year; 
+    }
+
+
+    // Tunable interface methods
+    @Override
+    public String tune() {
+        String result = "Tuning the";
+        if (this.isGrand) {
+            result += " grand piano";  
+        } else {
+            result += "piano";
+        }
+        return result;
+    }
+    @Override 
+    public String adjustPitch(boolean up) {
+        return up ? "Increasing pitch of the piano" : "Decreasing pitch of the piano";     
+    }
+
+    // Maintainable interface methods
+    @Override
+    public String clean() {
+        return "Cleaning the " + (this.isGrand ? "grand": "upright") + " piano keys and interior";      
+    }
+    @Override
+    public String inspect() {
+        return "Inspecting the " + (this.isGrand ? "grand": "upright") + " piano from " + year; 
+    }
+}
 
 // Step 7: Create a public class MusicShop to test the classes
 // This should include:
