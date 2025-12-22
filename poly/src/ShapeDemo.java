@@ -44,22 +44,22 @@ public class ShapeDemo {
                         System.out.println("Perimeter: " + shapes[shapeCount].perimeter());
                         // increment shapecount
                         shapeCount++;
-		    } else {
+                    } else {
                         System.out.println("Cannot add more shapes. Array is full!");
-		    }
+                    }
                     break; // each case statement gets a break statement
                 case 2: // Rectangle
                     if (shapeCount < shapes.length) {
                         System.out.println("Enter rectangle name: ");
                         String name = scanner.nextLine();
                         
-			System.out.println("Enter rectangle color: ");
+                        System.out.println("Enter rectangle color: ");
                         String color = scanner.nextLine();
                         
-			System.out.println("Enter rectangle length: ");
+                        System.out.println("Enter rectangle length: ");
                         double length = Double.parseDouble(scanner.nextLine());
                         
-			System.out.println("Enter rectangle width: ");
+                        System.out.println("Enter rectangle width: ");
                         double width = Double.parseDouble(scanner.nextLine());
                        
 			// Create rectangle and add to shape array
@@ -71,9 +71,9 @@ public class ShapeDemo {
                         System.out.println("Perimeter: " + shapes[shapeCount].perimeter());
                         // increment shapeCount 
                         shapeCount++;
-		    } else {
+                    } else {
                         System.out.println("Cannot add more shapes. Array is full!");
-		    }
+                    }
                     break;
                 case 3: // Triangle
                     if (shapeCount < shapes.length) {
