@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/poly/classes
+export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/poly/classes
 
 
 
@@ -17,6 +17,9 @@
 #javac -d classes/ src/Speaker.java src/SpeakerOperate.java
 #java SpeakerOperate
 
+#javac -d classes/ src/MusicShop.java
+#java MusicShop
 
-javac -d classes/ src/MusicShop.java
-java MusicShop
+
+javac -d classes/ src/Shape.java src/Circle.java src/Rectangle.java src/Triangle.java src/ShapeDemo.java
+java ShapeDemo
