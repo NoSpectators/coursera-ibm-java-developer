@@ -62,7 +62,7 @@ public class ShapeDemo {
                         System.out.println("Enter rectangle width: ");
                         double width = Double.parseDouble(scanner.nextLine());
                        
-			// Create rectangle and add to shape array
+                        // Create rectangle and add to shape array
                         shapes[shapeCount] = new Rectangle(name, color, length, width);
                         // display the added shape
                         System.out.println("\nRectangle Details: ");
@@ -96,9 +96,9 @@ public class ShapeDemo {
                         System.out.println("Perimeter: " + shapes[shapeCount].perimeter());
                         // increment shapeCount
                         shapeCount++;
-		    } else {
+                    } else {
                         System.out.println("Cannot add more shapes. Array is full!");
-		    }
+                    }
                     break; 
                 case 4: // display all shapes
                     if (shapeCount > 0) {
@@ -109,17 +109,17 @@ public class ShapeDemo {
                             System.out.println("Area: " + shapes[i].area());
                             System.out.println("Perimeter: " + shapes[i].perimeter());
                             System.out.println("------------------------"); 
-			}
-		    } else {
+                        }
+                    } else {
                         System.out.println("No shapes to display. Please add some shapes first.");
-		    }
+                    }
                     break;
                 case 5: // exit
                     exit = true;
                     System.out.println("Thank you for using the Shape Management System.");
                     break;
-	    }
-	}
+            }
+        }
         scanner.close(); // close the scanner
     }
 }
