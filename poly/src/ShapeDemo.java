@@ -9,18 +9,19 @@ public class ShapeDemo {
         boolean exit = false;
         while (!exit) {
             System.out.println("\n===== Shape Management System =====");
-            System.out.println("Press 1 to add a circle, " + 
+            System.out.println("Press.." + 
+                               "\n1 to add a circle, " + 
 			       "\n2 to add a rectangle, " + 
 			       "\n3 to add a triangle, " +
 			       "\n4 to display all shapes, " + 
 			       "\n5 to exit");
             System.out.print("Enter your choice (1-5) ");
             int userAction = 0; 
-	    try {
-	        userAction = Integer.parseInt(scanner.nextLine());
-	    } catch (NumberFormatException e) {
+            try {
+                userAction = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a number."); 
-	    }
+            }
                    
             switch(userAction) {
                 case 1: // Circle
@@ -28,15 +29,15 @@ public class ShapeDemo {
                         System.out.println("Enter circle name: ");
                         String name = scanner.nextLine();
                        
-			System.out.println("Enter circle color: ");
+                        System.out.println("Enter circle color: ");
                         String color = scanner.nextLine();
                        
-			System.out.println("Enter circle radius: ");
+                        System.out.println("Enter circle radius: ");
                         double radius = Double.parseDouble(scanner.nextLine());
                        
-			// create the circle and add to the Shape array
+                        // create the circle and add to the Shape array
                         shapes[shapeCount] = new Circle(name, color, radius);
-		        // display the added shape
+                        // display the added shape
                         System.out.println("\nCircle Details: ");
                         System.out.println(shapes[shapeCount].toString());
                         System.out.println("Area: " + shapes[shapeCount].area());
