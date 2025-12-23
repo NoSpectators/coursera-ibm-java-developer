@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections; // for option 5
+import java.util.Comparator; // option 5
 
 public class ArrayListExample {
     public static void main(String[] args) {
@@ -13,7 +15,8 @@ public class ArrayListExample {
                                    "\n1 to add a task " + 
                                    "\n2 to view all the tasks " + 
                                    "\n3 to change status of tasks " + 
-                                   "\n4 to delete a task " + 
+                                   "\n4 to delete a task " +
+                                   "\n5 to sort the list based on priority " + 
                                    "\n any other key to exit");
                 // read user's choice
                 String userAction = scanner.nextLine();
@@ -63,6 +66,16 @@ public class ArrayListExample {
                         todoList.remove(rmvIdx);
                         System.out.println("The task has been removed from the list");
                     }
+               } else if (userAction.equals("5")) {
+                   // Sort the ArrayList by age using a Comparator
+                   Collections.sort(todoList, new Comparator<Task>() {
+                       @Override
+                       public int compare(Task t1, Task t2) {
+                           return Integer.compare(t2.getPriority(), t1.getPriority());  
+                       }
+                   });
+                   System.out.println("Tasks sorted by priority (High to Low):");
+                   todoList.forEach(task -> System.out.println(task));
                } else {
                     break; // exit program if user enters any other key
                }
