@@ -67,8 +67,8 @@ public class ArrayListExample {
                     break; // exit program if user enters any other key
                }
 	    } 
-	} catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter a valid number.");
-	}
+        }
     }
 }
