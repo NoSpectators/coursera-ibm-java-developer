@@ -22,7 +22,7 @@ public class ArrayListExample {
                     // prompt user to enter task 
                     System.out.println("Enter the task ");
                     String taskStr = scanner.nextLine();
-		    // prompt user to enter task priority
+                    // prompt user to enter task priority
                     System.out.println("Enter Priority - 1 Low, 2 Medium, 3 High ");
                     int priority = Integer.parseInt(scanner.nextLine());
                     // validate the priority (if priority > 3, make it 1. otherwise, keep it).
@@ -40,17 +40,17 @@ public class ArrayListExample {
                     // check if index is valid
                     if (chgIdx > (todoList.size() - 1)) {
                         System.out.println("There is no such index position in the list");
-		    } else {
+                    } else {
                         // Prompt the user to enter the new status for the task
                         System.out.println("Enter the new status for the task P for 'In Progress' or C for 'completed'");
                         String updatedStatus = scanner.nextLine();
                         // Update the task status based on user input
                         if (updatedStatus.equalsIgnoreCase("P")) {
                             todoList.get(chgIdx).setStatus(Task.IN_PROGRESS);
-			} else if (updatedStatus.equalsIgnoreCase("C")) {
+                        } else if (updatedStatus.equalsIgnoreCase("C")) {
                             todoList.get(chgIdx).setStatus(Task.COMPLETED); 
 			}
-		    }
+                    }
                     System.out.println("The task has been changed in the list");
                 } else if (userAction.equals("4")) { // Delete a task
                     // Prompt user to enter index of the task to delete 
