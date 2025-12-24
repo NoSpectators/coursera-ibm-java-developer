@@ -26,7 +26,7 @@ public class StudentMenu {
             // read the user's choice
             int choice = Integer.parseInt(scanner.nextLine());
 
-	}
+        }
         scanner.close(); 
     }
 }
