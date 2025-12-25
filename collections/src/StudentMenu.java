@@ -52,7 +52,7 @@ public class StudentMenu {
                     System.out.println("Student updated successfully!");
                 } else {
                     System.out.println("Invalid index. No student found.");
-		}
+                }
             } else if (choice == 6) {
                 System.out.println("Exiting the program. Goodbye!");
                 break;
