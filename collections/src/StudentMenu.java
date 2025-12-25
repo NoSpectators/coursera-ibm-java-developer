@@ -34,7 +34,7 @@ public class StudentMenu {
                 String major = scanner.nextLine();
                 students.add(new Student(name, age, major));
                 System.out.println("Student added successfully!");
-	    } else if (choice == 2) {
+            } else if (choice == 2) {
                 System.out.print("Enter the index of the student to update: ");
                 int stIdx = Integer.parseInt(scanner.nextLine());
                 // check if index is valid
@@ -50,15 +50,15 @@ public class StudentMenu {
                     students.get(stIdx).setAge(age);
                     students.get(stIdx).setMajor(major);
                     System.out.println("Student updated successfully!");
-		} else {
+                } else {
                     System.out.println("Invalid index. No student found.");
 		}
-	    } else if (choice == 6) {
+            } else if (choice == 6) {
                 System.out.println("Exiting the program. Goodbye!");
                 break;
-	    } else {
+            } else {
                 System.out.println("Invalid choice. Please try again.");
-	    }
+            }
         }
         scanner.close(); 
     }
