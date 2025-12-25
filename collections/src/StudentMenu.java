@@ -25,7 +25,40 @@ public class StudentMenu {
            
             // read the user's choice
             int choice = Integer.parseInt(scanner.nextLine());
-
+            if (choice == 1) {
+                System.out.print("Enter student name: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter student age: ");
+                int age = Integer.parseInt(scanner.nextLine());
+                System.out.print("Enter student major: ");
+                String major = scanner.nextLine();
+                students.add(new Student(name, age, major));
+                System.out.println("Student added successfully!");
+	    } else if (choice == 2) {
+                System.out.print("Enter the index of the student to update: ");
+                int stIdx = Integer.parseInt(scanner.nextLine());
+                // check if index is valid
+                if (stIdx >= 0 && stIdx <= students.size()) {
+                    System.out.print("Enter new name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter new age: ");
+                    int age = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Enter new major: ");
+                    String major = scanner.nextLine();
+                    // update the students details
+                    students.get(stIdx).setName(name);
+                    students.get(stIdx).setAge(age);
+                    students.get(stIdx).setMajor(major);
+                    System.out.println("Student updated successfully!");
+		} else {
+                    System.out.println("Invalid index. No student found.");
+		}
+	    } else if (choice == 6) {
+                System.out.println("Exiting the program. Goodbye!");
+                break;
+	    } else {
+                System.out.println("Invalid choice. Please try again.");
+	    }
         }
         scanner.close(); 
     }
