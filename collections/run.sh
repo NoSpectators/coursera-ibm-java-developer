@@ -6,6 +6,9 @@
 #javac -d classes/ src/Task.java src/ArrayListExample.java 
 #java ArrayListExample 
 
+#javac -d classes/ src/Student.java src/StudentMenu.java 
+#java StudentMenu 
 
-javac -d classes/ src/Student.java src/StudentMenu.java 
-java StudentMenu 
+
+javac -d classes/ src/PhoneBookHashMap.java 
+java PhoneBookHashMap
