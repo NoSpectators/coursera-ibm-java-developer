@@ -11,7 +11,7 @@ public class PhoneBookHashMap {
         if (name.matches("^[a-zA-Z' -]+$") == false) {
             System.out.println("Invalid name!");
             return false;
-	}
+        }
         return true;
     }
 
@@ -20,7 +20,7 @@ public class PhoneBookHashMap {
         if (phoneNumber.matches("\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}") == false) {
             System.out.println("Invalid phone number!");
             return false;
-	}
+        }
         return true;
     }
     
@@ -29,7 +29,7 @@ public class PhoneBookHashMap {
 
             Scanner scanner = new Scanner(System.in);
             // create a HashMap to store names (keys) and phone numbers (values)
-	    HashMap<String, String> phonebook = new HashMap<>();
+            HashMap<String, String> phonebook = new HashMap<>();
             while (true) {
                 // Display the menu options to the user
                 System.out.println("\nPress 1 add an entry in the phonebook," + 
@@ -60,7 +60,7 @@ public class PhoneBookHashMap {
                     // validate the number format
                     if (!isPhoneNumberValid(phoneNumber)) {
                         continue;
-		    } 
+                    } 
                     phonebook.put(name, phoneNumber); // add name and number to phoneBook
                     System.out.println("The name and number have been added to the phonebook.");
                 } else if (userAction.equals("2")) { // view all entries
@@ -73,7 +73,7 @@ public class PhoneBookHashMap {
                     if (phonebook.containsKey(keyName)) {
                         System.out.println("The phone number you are looking for is " + 
                                             phonebook.get(keyName));
-		    } else {
+                    } else {
                         System.out.println("Name not found.");
                     }
                 } else if (userAction.equals("4")) { // delete an entry
@@ -93,6 +93,6 @@ public class PhoneBookHashMap {
 	} catch(NumberFormatException nfe) {
             // handle invalid number input (for example, non-integer input for priority or index)
             System.out.println("Invalid input. Please enter a valid number.");
-	}
+        }
     }
 }
