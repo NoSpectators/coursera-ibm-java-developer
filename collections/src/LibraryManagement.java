@@ -32,35 +32,62 @@ public class LibraryManagement {
                 continue;
 	    }
 	    switch (choice) {
-                // Step 6: Implement the addBook functionality
-                // Hint: Prompt the user for title, author, and publication year
                 case 1 -> addBook(scanner, library);  
-
-
-                // Step 7: Implement the viewAllBooks functionality
-                // Hint: Use a loop or forEach to display all books
+                case 2 -> viewAllBooks(library);
+                case 3 -> searchBooks(scanner, library);
+                case 4 -> checkOutBook(scanner, library);
+                case 5 -> returnBook(scanner, library);
+                case 6 -> sortBooks(scanner, library);
+                case 7 -> viewAvailableBooks(library);
+                case 8 -> {
+                    System.out.println("Thank you for using the Library Management System. Goodbye!");
+                    running = false;
+                } 
+                default -> System.out.println("Invalid choice. Please try again.");
         
-                // Step 8: Implement the search functionality
-                // Hint: Take user input for search term and check each book
-        
-                // Step 9: Implement the checkOut functionality
-                // Hint: Find the book by index and use the checkOut() method
-        
-                // Step 10: Implement the returnBook functionality
-                // Hint: Find the book by index and use the returnBook() method
-        
-                // Step 11: Implement the sortBooks functionality
-                // Hint: Use Collections.sort() with a Comparator
-        
-                // Step 12: Implement the viewAvailableBooks functionality
-                // Hint: Use ArrayList's stream() or loop through to filter
 	    }
         
         }
         scanner.close();
     }
-    // additional methods
+
+    // Note: some methods need the Scanner instance for additional user engagement
     public static void addBook(Scanner scanner, ArrayList<Book> library) {
+        System.out.println("\n------ Add a New Book ------");     
+        System.out.print("Enter book title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter author name: ");
+        String author = scanner.nextLine();
+        // use try / catch within a forever loop for correct user input
+	int year = 0;
+        while (true) {
+            System.out.print("Enter publication year: ");
+            try {
+                year = Integer.parseInt(scanner.nextLine());
+                if (year < 0 || year > 2025) {
+                    System.out.println("Year must be between 0 and 2025");
+                } else {
+                    break; // success! exit loop
+                }
+	    } catch (NumberFormatException e) {
+                System.out.println("Invalid year. Please enter a number.");
+            }
+        }
+        Book newBook = new Book(title, author, year);
+        library.add(newBook); // use the add() method defined on ArrayList instance (library) to add the book
+        System.out.println("Book added successfully: " + newBook);
+    }
+
+    public static void viewAllBooks(ArrayList<Book> library) {
+        
+    }
+    public static void searchBooks(Scanner scanner, ArrayList<Book> library) {
+        
+    }
+    public static void checkOutBook(Scanner scanner, ArrayList<Book> library) {
+        
+    }
+    public static void returnBook(Scanner scanner, ArrayList<Book> library) {
         
     }
 }
