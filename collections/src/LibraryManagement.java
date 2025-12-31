@@ -79,8 +79,16 @@ public class LibraryManagement {
     }
 
     public static void viewAllBooks(ArrayList<Book> library) {
-        
+        System.out.println("\n------ All Books in Library ------"); 
+        if (library.isEmpty()) {
+            System.out.println("The library is empty");
+            return;
+	}
+        for (int i = 0; i < library.size(); i++) {
+            System.out.println((i + 1) + ". " + library.get(i));
+	}
     }
+
     public static void searchBooks(Scanner scanner, ArrayList<Book> library) {
         
     }
@@ -90,4 +98,11 @@ public class LibraryManagement {
     public static void returnBook(Scanner scanner, ArrayList<Book> library) {
         
     }
+    public static void sortBooks(Scanner scanner, ArrayList<Book> library) {
+        
+    }
+    public static void viewAvailableBooks(ArrayList<Book> library) {
+        
+    }
+    
 }
