@@ -10,5 +10,8 @@
 #java StudentMenu 
 
 
-javac -d classes/ src/PhoneBookHashMap.java 
-java PhoneBookHashMap
+#javac -d classes/ src/PhoneBookHashMap.java 
+#java PhoneBookHashMap
+
+javac -d classes src/Book.java src/LibraryManagement.java
+java LibraryManagement
