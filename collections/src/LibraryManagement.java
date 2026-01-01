@@ -90,7 +90,22 @@ public class LibraryManagement {
     }
 
     public static void searchBooks(Scanner scanner, ArrayList<Book> library) {
-        
+        System.out.println("\n------ Search Books ------");
+        System.out.print("Enter search term (title or author): ");
+        String searchTerm = scanner.nextLine().toLowerCase();
+        System.out.println("Search results:");
+        boolean found = false;
+        for (int i = 0; i < library.size(); i++) {
+            Book book = library.get(i);
+            if (book.getBookTitle().toLowerCase().contains(searchTerm) || 
+                book.getAuthor().toLowerCase().contains(searchTerm)) {
+                System.out.println((i+1) + ". " + book);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No books found matching \"" + searchTerm + "\"");
+        }
     }
     public static void checkOutBook(Scanner scanner, ArrayList<Book> library) {
         
