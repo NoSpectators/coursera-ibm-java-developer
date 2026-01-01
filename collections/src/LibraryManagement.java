@@ -59,7 +59,7 @@ public class LibraryManagement {
         System.out.print("Enter author name: ");
         String author = scanner.nextLine();
         // use try / catch within a forever loop for correct user input
-	int year = 0;
+        int year = 0;
         while (true) {
             System.out.print("Enter publication year: ");
             try {
@@ -69,7 +69,7 @@ public class LibraryManagement {
                 } else {
                     break; // success! exit loop
                 }
-	    } catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid year. Please enter a number.");
             }
         }
@@ -83,10 +83,10 @@ public class LibraryManagement {
         if (library.isEmpty()) {
             System.out.println("The library is empty");
             return;
-	}
+        }
         for (int i = 0; i < library.size(); i++) {
             System.out.println((i + 1) + ". " + library.get(i));
-	}
+        }
     }
 
     public static void searchBooks(Scanner scanner, ArrayList<Book> library) {
