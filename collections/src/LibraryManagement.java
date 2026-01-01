@@ -27,11 +27,11 @@ public class LibraryManagement {
             int choice; 
             try {
                 choice = Integer.parseInt(scanner.nextLine());
-	    } catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
                 continue;
-	    }
-	    switch (choice) {
+            }
+            switch (choice) {
                 case 1 -> addBook(scanner, library);  
                 case 2 -> viewAllBooks(library);
                 case 3 -> searchBooks(scanner, library);
@@ -45,8 +45,7 @@ public class LibraryManagement {
                 } 
                 default -> System.out.println("Invalid choice. Please try again.");
         
-	    }
-        
+            }
         }
         scanner.close();
     }
