@@ -107,7 +107,40 @@ public class LibraryManagement {
         }
     }
     public static void checkOutBook(Scanner scanner, ArrayList<Book> library) {
-        
+        System.out.println("\n------ Check Out a Book ------");
+        if (library.isEmpty()) {
+            System.out.println("The library is empty.");
+            return;
+        }
+        System.out.println("Available books:");
+        boolean isAvailable = false;
+        for (int i = 0; i < library.size(); i++) {
+            Book book = library.get(i);
+            if (book.getIsAvailable()) {
+                System.out.println((i+1) + ". " + book);
+                isAvailable = true;
+            }
+        }
+        if (!isAvailable) {
+            System.out.println("No books are currently available.");
+            return;
+        }
+        System.out.print("Enter the number of the book to check out: ");
+        try {
+            int bookNumber = Integer.parseInt(scanner.nextLine());
+            if (bookNumber < 1 || bookNumber > library.size()) {
+                System.out.println("Invalid book number.");
+                return; 
+            }
+            Book book = library.get(bookNumber-1); // arraylist starts at 0 index
+            if (book.checkOut()) {
+                System.out.println("Book checked out successfully: " + book);
+            } else {
+                System.out.println("Book is already checked out.");
+            }
+        } catch(NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+        }
     }
     public static void returnBook(Scanner scanner, ArrayList<Book> library) {
         
