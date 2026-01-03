@@ -180,7 +180,55 @@ public class LibraryManagement {
         
     }
     public static void sortBooks(Scanner scanner, ArrayList<Book> library) {
-        
+        System.out.println("\n------ Sort books ------");
+        if (library.isEmpty()) {
+            System.out.println("The library is empty.");
+            return;
+        }
+        System.out.println("Sort by:");
+        System.out.println("1. Title");
+        System.out.println("2. Author");
+        System.out.println("3. Publication Year");
+        System.out.print("Enter your choice: ");
+        try {
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1: // sort by title
+                    Collections.sort(library, new Comparator<Book>() {
+                        @Override
+                        public int compare(Book b1, Book b2) {
+                            return b1.getBookTitle().compareToIgnoreCase(b2.getBookTitle());
+                        }
+                    });
+                    System.out.println("Books sorted by title."); 
+                    break;
+                case 2: // sort by author
+                    Collections.sort(library, new Comparator<Book>() {
+                        @Override
+                        public int compare(Book b1, Book b2) {
+                            return b1.getAuthor().compareToIgnoreCase(b2.getAuthor());
+                        }
+                    });
+                    System.out.println("Books sorted by author.");
+                    break;
+                case 3: // sort by publication year
+                    Collections.sort(library, new Comparator<Book>() {
+                        @Override
+                        public int compare(Book b1, Book b2) {
+                            return Integer.compare(b1.getPublicationYear(), b2.getPublicationYear());
+                        }
+                    });
+                    System.out.println("Books by publication year.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    return;
+            }
+            // display sorted books
+            viewAllBooks(library);
+        } catch(NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+        }
     }
     public static void viewAvailableBooks(ArrayList<Book> library) {
         
