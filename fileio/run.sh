@@ -6,5 +6,8 @@
 #javac -d classes src/ReadFileExampleWithScanner.java 
 #java ReadFileExampleWithScanner 
 
-javac -d classes src/ReadFileExample.java 
-java ReadFileExample
+#javac -d classes src/ReadFileExample.java 
+#java ReadFileExample
+
+javac -d classes src/ReadFileExampleInLoop.java
+java ReadFileExampleInLoop

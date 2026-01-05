@@ -14,11 +14,12 @@ class ReadFileExampleWithScanner {
                 String fileLine = fileScanner.nextLine();
                 System.out.println(fileLine);
             }
-            // close the scanner
+            // close the file scanner
             fileScanner.close();
         } catch(FileNotFoundException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
+        scanner.close(); // close scanner
     }
 }
 
