@@ -2,6 +2,7 @@ import java.io.FileReader; // character stream
 import java.util.Scanner; // user input
 import java.io.FileNotFoundException; 
 
+// package-private class (no "public" keyword) 
 class ReadFileExampleWithScanner {
     public static void main(String[] args) {
         try {
