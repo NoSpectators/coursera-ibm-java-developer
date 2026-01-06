@@ -9,5 +9,8 @@
 #javac -d classes src/ReadFileExample.java 
 #java ReadFileExample
 
-javac -d classes src/ReadFileExampleInLoop.java
-java ReadFileExampleInLoop
+#javac -d classes src/ReadFileExampleInLoop.java
+#java ReadFileExampleInLoop
+
+javac -d classes src/DirectoryExplorer.java
+java DirectoryExplorer 
