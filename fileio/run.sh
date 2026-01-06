@@ -12,5 +12,9 @@
 #javac -d classes src/ReadFileExampleInLoop.java
 #java ReadFileExampleInLoop
 
-javac -d classes src/DirectoryExplorer.java
-java DirectoryExplorer 
+#javac -d classes src/DirectoryExplorer.java
+#java DirectoryExplorer 
+
+javac -d classes src/DirectoryExplorerOptions.java
+java DirectoryExplorerOptions 
+

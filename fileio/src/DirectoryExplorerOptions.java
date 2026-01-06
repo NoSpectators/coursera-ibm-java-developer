@@ -2,7 +2,36 @@ import java.io.File; // metadata: create, delete, rename, check existence of fil
 import java.util.Scanner; // a text parser to get data from the keyboard, files, or strings (here its for user input)
 import java.io.IOException;
 
-public class DirectoryExplorer {
+public class DirectoryExplorerOptions {
+    // rename or delete file 
+    public static void fileManagement(File file, Scanner scanner) {
+        System.out.println("\nPress 1 to rename the file," + 
+                           "\nPress 2 to delete the file," + 
+                           "\nAny other key to exit");
+        String userChoice = scanner.nextLine();
+        if (userChoice.equals("1")) {
+            System.out.println("Enter the new name for the file " + file.getName());
+            String newfileName = scanner.nextLine();
+            boolean changed = file.renameTo(new File(file.getParent(), newfileName));
+            if (changed) {
+                System.out.println("Filename successfully changed!");
+            } else {
+                System.out.println("Filename couldn't be changed!");
+            }
+        } else if (userChoice.equals("2")) {
+            boolean deleted = file.delete();
+            if (deleted) {
+                System.out.println("Filename successfully deleted");
+            } else {
+                System.out.println("Filename couldn't be deleted!");
+            }
+        }
+    }
+    // list, rename, or delete directory   
+    public static void directoryManagement(File dirObj, Scanner scanner) {
+        
+    }
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -16,8 +45,10 @@ public class DirectoryExplorer {
                 if (file.exists()) {
                     if (file.isFile()) {
                         System.out.println("\n" + fileName + " is a file");
+                        fileManagement(file, scanner);
                     } else {
                         System.out.println("\n" + fileName + " is a directory");
+                        directoryManagement(file, scanner);
                     }
                 // use case 2: file or directory does not exist
                 } else {
@@ -63,5 +94,6 @@ public class DirectoryExplorer {
                 break;
             }
         }
+        scanner.close();
     }
 }
