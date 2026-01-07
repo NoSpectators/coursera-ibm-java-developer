@@ -29,7 +29,40 @@ public class DirectoryExplorerOptions {
     }
     // list, rename, or delete directory   
     public static void directoryManagement(File dirObj, Scanner scanner) {
-        
+        System.out.println("\nPress 1 to list the directory," +
+                           "\nPress 2 to rename the directory," +
+                           "\nPress 3 to delete the directory," + 
+                           "\nAny other key to exit");
+        String userChoice = scanner.nextLine();
+        if (userChoice.equals("1")) {
+            // list the directory contents
+            String[] fileNames = dirObj.list();
+            if (fileNames.length == 0) {
+                System.out.println("The directory is empty!");
+            } else {
+                for (int i = 0; i < fileNames.length; i++) {
+                    System.out.println(fileNames[i]);
+                }
+            }
+        } else if (userChoice.equals("2")) {
+            // rename the directory
+            System.out.println("Enter the new name for the directory " + dirObj.getName());
+            String newDirName = scanner.nextLine();
+            boolean changed = dirObj.renameTo(new File(dirObj.getParent(), newDirName));
+            if (changed) {
+                System.out.println("Directory name successfully changed");
+            } else {
+                System.out.println("Directory name couldn't be changed!");
+            }
+        } else if (userChoice.equals("3")) {
+            // delete the directory
+            boolean deleted = dirObj.delete();
+            if (deleted) {
+                System.out.println("Directory successfully deleted");
+            } else {
+                System.out.println("Directory couldn't be deleted! It might not be empty");	    
+            }
+        }
     }
     
     public static void main(String[] args) {
