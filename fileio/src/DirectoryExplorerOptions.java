@@ -3,6 +3,25 @@ import java.util.Scanner; // a text parser to get data from the keyboard, files,
 import java.io.IOException;
 
 public class DirectoryExplorerOptions {
+
+   private static void directoryList(File dirObj) {
+        System.out.println("Printing " + dirObj + " recursively");
+        File[] files = dirObj.listFiles();
+        // guard for null object before listing 
+        if (files == null) {
+            System.out.println("Access denied or is not a directory: " + dirObj.getAbsolutePath());
+            return;
+        }
+        // there are contents in array
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isFile()) { // base case: item in array is a file
+                System.out.println(files[i].getAbsolutePath());
+            } else {
+                directoryList(files[i]); // recursive case: if item is a subdirectory, recursively list contents
+            }
+        }
+    }
+
     // rename or delete file 
     public static void fileManagement(File file, Scanner scanner) {
         System.out.println("\nPress 1 to rename the file," + 
@@ -31,7 +50,8 @@ public class DirectoryExplorerOptions {
     public static void directoryManagement(File dirObj, Scanner scanner) {
         System.out.println("\nPress 1 to list the directory," +
                            "\nPress 2 to rename the directory," +
-                           "\nPress 3 to delete the directory," + 
+                           "\nPress 3 to delete the directory," +
+                           "\nPress 4 to recursively list the directory," + 
                            "\nAny other key to exit");
         String userChoice = scanner.nextLine();
         if (userChoice.equals("1")) {
@@ -62,6 +82,8 @@ public class DirectoryExplorerOptions {
             } else {
                 System.out.println("Directory couldn't be deleted! It might not be empty");	    
             }
+        } else if (userChoice.equals("4")) {
+            directoryList(dirObj);
         }
     }
     
