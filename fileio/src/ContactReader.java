@@ -16,8 +16,9 @@ public class ContactReader {
             // buffered reader is more efficient for reading lines from a file 
             BufferedReader reader = new BufferedReader(new FileReader(fileName)); 
             String line;
-	    System.out.println("\n======CONTACT LIST======");
-            while ((line = reader.readLine()) != null) {
+            System.out.println("\n======CONTACT LIST======");
+            // read each line in file. if not null, read the correctly-formatted lines. 
+	    while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     String[] parts = line.split(":"); // expected format: Name:PhoneNumber
                     if (parts.length == 2) {
@@ -30,7 +31,7 @@ public class ContactReader {
                     }
                 } 
             }
-            reader.close(); 
+            reader.close(); // close the filereader after last line in file 
             System.out.println("\nTotal contacts read: " + contactCount);
         } catch (FileNotFoundException e) {
             System.err.println("Error: File not found - " + fileName);
