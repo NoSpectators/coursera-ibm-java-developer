@@ -18,7 +18,7 @@ public class ContactReader {
             String line;
             System.out.println("\n======CONTACT LIST======");
             // read each line in file. if not null, read the correctly-formatted lines. 
-	    while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     String[] parts = line.split(":"); // expected format: Name:PhoneNumber
                     if (parts.length == 2) {
