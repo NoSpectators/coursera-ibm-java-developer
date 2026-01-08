@@ -15,8 +15,11 @@
 #javac -d classes src/DirectoryExplorer.java
 #java DirectoryExplorer 
 
-javac -d classes src/DirectoryExplorerOptions.java
-java DirectoryExplorerOptions 
+#javac -d classes src/DirectoryExplorerOptions.java
+#java DirectoryExplorerOptions 
 
 #javac -d classes src/DirectoryRecursiveList.java
 #java DirectoryRecursiveList 
+
+javac -d classes src/ContactReader.java
+java ContactReader
