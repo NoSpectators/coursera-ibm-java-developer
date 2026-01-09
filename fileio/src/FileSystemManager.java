@@ -77,27 +77,42 @@ public class FileSystemManager {
                 displayHelp();
                 break;
             case "ls":
-                // TODO: Implement listing files and directories
+                listFiles(); 
                 break;
             case "cd":
-                // TODO: Implement changing directories
-                // Hint: Handle "cd .." (parent directory) and "cd directoryName"
+                changeDirectory(); 
                 break;
             case "pwd":
-                // TODO: Implement displaying current directory path
-                break;
+                System.out.println(currentDirectory.getAbsolutePath()); 
+		break;
             case "mkdir":
-                // TODO: Implement creating a new directory
-                break;
+                if (args.isEmpty()) {
+                    System.out.println("Error: Directory name is required");
+                } else {
+                    createDirectory(args);
+                }
+		break;
             case "touch":
-                // TODO: Implement creating a new file
+                if (args.isEmpty()) {
+                    System.out.println("Error: File name is required");
+                } else {
+                    createFile(args);
+                }
                 break;
             case "rm":
-                // TODO: Implement deleting a file or directory
+                if (args.isEmpty()) {
+                    System.out.println("Error: File or Directory name is required");
+                } else {
+                    delete(args);
+                }
                 break;
             case "rename":
-                // TODO: Implement renaming a file or directory
-                // Hint: The args will contain both old and new names
+                String[] parts = args.split("\\s+", 2);
+                if (parts.length < 2) {
+                    System.out.println("Error: Both old and new names are required");
+                } else {
+                    rename(parts[0], parts[1]);
+                }
                 break;
             case "find":
                 // TODO: Implement searching for files by name pattern
