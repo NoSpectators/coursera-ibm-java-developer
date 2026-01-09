@@ -21,5 +21,9 @@
 #javac -d classes src/DirectoryRecursiveList.java
 #java DirectoryRecursiveList 
 
-javac -d classes src/ContactReader.java
-java ContactReader
+#javac -d classes src/ContactReader.java
+#java ContactReader
+
+
+javac -d classes src/FileSystemManager.java
+java FileSystemManager
