@@ -80,7 +80,7 @@ public class FileSystemManager {
                 listFiles(); 
                 break;
             case "cd":
-                changeDirectory(); 
+                changeDirectory(args); 
                 break;
             case "pwd":
                 System.out.println(currentDirectory.getAbsolutePath()); 
@@ -107,23 +107,32 @@ public class FileSystemManager {
                 }
                 break;
             case "rename":
-                String[] parts = args.split("\\s+", 2);
-                if (parts.length < 2) {
+                String[] nameParts = args.split("\\s+", 2);
+                if (nameParts.length < 2) {
                     System.out.println("Error: Both old and new names are required");
                 } else {
-                    rename(parts[0], parts[1]);
+                    rename(nameParts[0], nameParts[1]);
                 }
                 break;
             case "find":
-                // TODO: Implement searching for files by name pattern
+                if (args.isEmpty()) {
+                    System.out.println("Error: search pattern is required"); 
+                } else {
+                    findFiles(args); 
+                }
                 break;
             case "info":
-                // TODO: Implement displaying file information
+                if (args.isEmpty()) {
+                    System.out.println("Error: file name is required"); 
+                } else {
+                    displayFileInfo(args); 
+                }
                 break;
             case "exit":
                 return false;
             default:
-                System.out.println("Unknown command. Type 'help' for available commands.");
+                System.out.println("Unknown command: " + commandName);
+                System.out.println("Type 'help' for available commands.");
         }
         
         return true;
@@ -151,12 +160,24 @@ public class FileSystemManager {
      * List files and directories in the current directory
      */
     private void listFiles() {
-        // TODO: Get the list of files and directories in the current directory
+        // Get the list of files and directories in the current directory
+        File[] files = currentDirectory.listFiles(); 
         
-        // TODO: Display the list of files and directories
-        // For each file, show:
-        // - 'd' if it's a directory or '-' if it's a file
-        // - The file name
+	if (files == null || files.length == 0) {
+            System.out.println("Directory is empty or cannot be accessed.");
+            return;
+        }
+        System.out.println("Contents of " + currentDirectory.getAbsolutePath() + ":");
+        System.out.println("Type | Size (bytes) | Last Modified        | Name");
+        System.out.println("-------------------------------------------------");
+        for (File file : files) {
+            // - 'd' if it's a directory or '-' if it's a file
+            char type = file.isDirectory() ? 'd' : '-';
+            // format the last modified date
+            String lastModified = dateFormat.format(new Date(file.lastModified()));
+            // display the file information
+            System.out.printf(" %c   | %11d | %s | %s%n", type, file.length(), lastModified, file.getName());
+        }
     }
     
     /**
