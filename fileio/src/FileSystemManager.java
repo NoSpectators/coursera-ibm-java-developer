@@ -186,9 +186,27 @@ public class FileSystemManager {
      * @param dirName The name of the directory to change to
      */
     private void changeDirectory(String dirName) {
-        // TODO: Implement changing to a directory
-        // If dirName is "..", go to parent directory
-        // Otherwise, change to the specified directory if it exists
+        if (dirName.isEmpty()) {
+            System.out.println("Current directory: " + currentDirectory.getAbsolutePath());
+	    return;
+        }
+        if (dirName.equals("..")) {
+            // go to parent directory
+            File parent = currentDirectory.getParentFile();
+            if (parent != null) {
+                currentDirectory = parent;
+            } else {
+                System.out.println("Already at root directory");
+            }
+        } else {
+            // change to specified directory
+            File newDir = new File(currentDirectory, dirName);
+            if (newDir.exists() && newDir.isDirectory()) {
+                currentDirectory = newDir;
+            } else {
+                System.out.println("Error: directory does not exist: " + dirName);
+            }
+        }
     }
     
     /**
