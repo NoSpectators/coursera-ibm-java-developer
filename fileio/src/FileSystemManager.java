@@ -215,8 +215,18 @@ public class FileSystemManager {
      * @param dirName The name of the directory to create
      */
     private void createDirectory(String dirName) {
-        // TODO: Implement creating a new directory
         // Create a new directory with the given name in the current directory
+        File newDir = new File(currentDirectory, dirName);
+        if (newDir.exists()) {
+            System.out.println("Error: A file or directory with that name already exists.");
+            return;
+        } 
+        boolean created = newDir.mkdir();
+        if (created) {
+            System.out.println("Directory created: " + dirName);
+        } else {
+            System.out.println("Error: Failed to create directory: " + dirName);
+        }
     }
     
     /**
@@ -225,8 +235,22 @@ public class FileSystemManager {
      * @param fileName The name of the file to create
      */
     private void createFile(String fileName) {
-        // TODO: Implement creating a new file
-        // Create a new empty file with the given name in the current directory
+        File newFile = new File(currentDirectory, fileName);
+        if (newFile.exists()) {
+            System.out.println("Error: A file or directory with that name already exists.");
+            return;
+        }
+
+        try {
+            boolean created = newFile.createNewFile();
+            if (created) {
+                System.out.println("File created: " + fileName);
+            } else {
+                System.out.println("Error: Failed to create file: " + fileName);
+            }
+        } catch(IOException e) {
+            System.out.println("Error creating file: " + e.getMessage());
+        }
     }
     
     /**
