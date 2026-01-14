@@ -259,9 +259,59 @@ public class FileSystemManager {
      * @param name The name of the file or directory to delete
      */
     private void delete(String name) {
-        // TODO: Implement deleting a file or directory
-        // If it's a directory, provide a warning and confirm deletion
+        File fileToDelete = new File(currentDirectory, name);
+        if (!fileToDelete.exists()) {
+            System.out.println("Error: File or directory does not exist: " + name);
+            return;
+        }
+
+        if (fileToDelete.isDirectory()) {
+            // check if directory if empty
+            File[] contents = fileToDelete.listFiles();
+            if (contents != null && contents.length > 0) {
+                System.out.println("Warning: Directory is not empty. Delete anyway? (y/n)");
+                String response = scanner.nextLine().trim().toLowerCase();
+                if (!response.equals("y")) {
+                    System.out.println("Deletion cancelled.");
+                    return;
+                }
+                // recursively delete directory contents
+                boolean allDeleted = deleteRecursively(fileToDelete);
+                if (allDeleted) {
+                    System.out.println("Directory and its contents deleted: " + name);
+                } else {
+                    System.out.println("Error: failed to delete some contents of directory: " + name);
+                }
+                return;
+            }
+	}
+        boolean deleted = fileToDelete.delete();  
+        if (deleted) {
+            System.out.println((fileToDelete.isDirectory() ? "Directory" : "File") + " deleted: " + name); 
+        } else {
+            System.out.println("Error: Failed to delete " + (fileToDelete.isDirectory() ? "directory" : "file") + ": " + name);
+	}
     }
+
+    /**
+     * Recursively delete a directory and its contents
+     * @param directory The directory to delete
+     * @return true if successful, false otherwise
+     */
+    private boolean deleteRecursively(File directory) {
+        File[] contents = directory.listFiles();
+        if (contents != null) {
+            for (File file : contents) {
+                if (file.isDirectory()) {
+                    deleteRecursively(file);
+                } else {
+                    file.delete();
+                }
+            }
+        }
+        return directory.delete();
+    }
+
     
     /**
      * Rename a file or directory
@@ -270,7 +320,23 @@ public class FileSystemManager {
      * @param newName The new name for the file or directory
      */
     private void rename(String oldName, String newName) {
-        // TODO: Implement renaming a file or directory
+        File oldFile = new File(currentDirectory, oldName);
+        File newFile = new File(currentDirectory, newName);
+
+        if (!oldFile.exists()) {
+            System.out.println("Error: File or directory does not exist: " + oldName);
+            return; 
+	}
+        if (newFile.exists()) {
+            System.out.println("Error: A file or directory with the new name already exists: " + newName);
+            return; 
+	}
+        boolean renamed = oldFile.renameTo(newFile);
+        if (renamed) {
+            System.out.println((oldFile.isDirectory() ? "Directory" : "File") + " renamed from " + oldName + " to " + newName); 
+        } else {
+            System.out.println("Error: Failed to rename " + (oldFile.isDirectory() ? "directory" : "file") + ".");
+        }
     }
     
     /**
