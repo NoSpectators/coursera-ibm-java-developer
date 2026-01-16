@@ -345,8 +345,39 @@ public class FileSystemManager {
      * @param pattern The pattern to search for
      */
     private void findFiles(String pattern) {
-        // TODO: Implement searching for files by name pattern
-        // Use recursive method to search through directories
+        System.out.println("Searching for files matching pattern: " + pattern);
+        int count = findFilesRecursively(currentDirectory, pattern, 0);
+        System.out.println("Found " + count + " matching files/directories.");
+    }
+    
+    /**
+     * Recursively search for files matching a pattern
+     *
+     * @param directory The directory to search in
+     * @param pattern The pattern to search for
+     * @param currentDepth The current recursion depth
+     * @return The number of matching files found
+     */
+    private int findFilesRecursively(File directory, String pattern, int currentDepth) {
+        int count = 0;
+        File[] files = directory.listFiles();
+
+        if (files == null) {
+            return 0; 
+        }
+        for (File file : files) {
+            if (file.getName().contains(pattern)) {
+                for (int i = 0; i < currentDepth; i++) {
+                    System.out.print("  ");
+                }
+                System.out.println(file.isDirectory() ? "[Dir] " : "[File]" + file.getName());
+                count++;
+            }
+            if (file.isDirectory()) { 
+                count += findFilesRecursively(file, pattern, currentDepth + 1);
+            }
+        }
+        return count;
     }
     
     /**
