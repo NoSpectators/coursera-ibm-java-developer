@@ -25,7 +25,7 @@ public class FileSystemManager {
      */
     public FileSystemManager() {
         currentDirectory = new File(System.getProperty("user.dir"));        
-        Scanner scanner = new Scanner(System.in); 
+        scanner = new Scanner(System.in); 
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     }
     
@@ -386,8 +386,37 @@ public class FileSystemManager {
      * @param fileName The name of the file to display information for
      */
     private void displayFileInfo(String fileName) {
-        // TODO: Implement displaying file information
-        // Show file size, last modified date, whether it's a directory, etc.
+        File file = new File(currentDirectory, fileName);
+        if (!file.exists()) {
+            System.out.println("Error: File or directory does not exist: " + fileName);
+            return;
+        }
+        System.out.println("Information for: " + file.getName());
+        System.out.println("-----------------------------");
+        System.out.println("Type:          " + (file.isDirectory() ? "Directory" : "File"));
+        System.out.println("Path:          " + file.getAbsolutePath());
+        System.out.println("Size:          " + file.length() + " bytes"); 
+        System.out.println("Last Modified: " + dateFormat.format(new Date(file.lastModified()))); 
+        System.out.println("Readable:      " + file.canRead());
+        System.out.println("Writable:      " + file.canWrite());
+        System.out.println("Executable:    " + file.canExecute());
+        System.out.println("Hidden:        " + file.isHidden());
+        
+        if (file.isDirectory()) {
+            File[] contents = file.listFiles();
+            int fileCount = 0;
+            int dirCount = 0;
+            if (contents != null) {
+                for (File child : contents) {
+                    if (child.isDirectory()) {
+                       dirCount++;
+                    } else {
+                       fileCount++;
+                    }
+                }
+            }
+            System.out.println("Content:      " + fileCount + " files, " + dirCount + " directories");
+        }
     }
     
     /**
