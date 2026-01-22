@@ -16,8 +16,10 @@ public class ZonedDateTimePrinter {
                            "m for Minute of hour (0-59)\n" +  
                            "mm for zero-padded minute of hour (00-59)\n" + 
                            "s for Second of minute (0-59), ss for zero-padded second of minute (00-59)\n" + 
-                           "z for Time zone (for example, PDT, EST), zzz: Time zone (for example, Pacific Daylight Time, Eastern Standard Time)" + 
-                           "Z for Time zone offset (for example, +0800, -0500)");
+                           "K for Hour of day (0-11), KK: zero-padded hour of day (00-11), k: Hour of day (1-24)\n" +  
+			   "z for Time zone (for example, PDT, EST), zzz: Time zone (for example, Pacific Daylight Time, Eastern Standard Time)" + 
+                           "Z for Time zone offset (for example, +0800, -0500)\n" + 
+                           "a for displaying AM/PM\n");
         String strDateTimeFormat = scanner.nextLine();
         DateTimeFormatter newDateTimeformat = DateTimeFormatter.ofPattern(strDateTimeFormat);
         System.out.println("The date and time is " + nowDateTime.format(newDateTimeformat));
