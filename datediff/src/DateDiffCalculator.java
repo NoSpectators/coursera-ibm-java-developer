@@ -21,10 +21,7 @@ public class DateDiffCalculator {
         }
         return diffStr;
     }
-    public static void displayLocalDateFormat(Scanner scanner) {
-        System.out.println("Input the LocalDate format you want to feed the dates in:");
-        String dateFormatStr = scanner.nextLine();
-        DateTimeFormatter dateformat = DateTimeFormatter.ofPattern(dateFormatStr);
+    public static void displayLocalDateFormat(Scanner scanner, String dateFormatStr, DateTimeFormatter dateformat) {
         try {
             System.out.println("Input the date in " + dateFormatStr + " format:");
             String rawDate1 = scanner.nextLine();
@@ -53,12 +50,7 @@ public class DateDiffCalculator {
             System.out.println("Invalid input. Please try again.");
         }
     }
-    public static void displayZonedDateTime(Scanner scanner) {
-        System.out.println("Input the ZonedDateTime format you want to input the dates in " +
-                "e.g., (dd MMM yy HH:mm:ss Z) :");
-        String dateFormatStr = scanner.nextLine();
-        DateTimeFormatter dateformat = DateTimeFormatter.ofPattern(dateFormatStr);
-
+    public static void displayZonedDateTime(Scanner scanner, String dateFormatStr, DateTimeFormatter dateformat) {
         try {
             System.out.println("Input the date in " + dateFormatStr + " format:");
             String rawDate1 = scanner.nextLine();
@@ -90,11 +82,17 @@ public class DateDiffCalculator {
 
         String userOption = scanner.nextLine();
         if (userOption.equals("1")) {
-            displayZonedDateTime(scanner);
+            System.out.println("Input the ZonedDateTime format you want to input the dates in " +
+                    "e.g., (dd MMM yy HH:mm:ss Z) (15 Feb 22 14:30:00 +0930) :");
+            String dateFormatStr = scanner.nextLine();
+            DateTimeFormatter dateformat = DateTimeFormatter.ofPattern(dateFormatStr);
+            displayZonedDateTime(scanner, dateFormatStr, dateformat);
 	    } else if (userOption.equals("2")) {
-            System.out.println("Input the LocalDate format you want to feed the dates in (dd MMM yy):");
-
-            displayLocalDateFormat(scanner);
+            System.out.println("Input the LocalDate format you want to feed the dates in " +
+                    "e.g., (dd MMM yy) (02 Feb 25) :");
+            String dateFormatStr = scanner.nextLine();
+            DateTimeFormatter dateformat = DateTimeFormatter.ofPattern(dateFormatStr);
+            displayLocalDateFormat(scanner, dateFormatStr, dateformat);
         }
         scanner.close();
     }
