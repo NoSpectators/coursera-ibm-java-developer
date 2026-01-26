@@ -1,6 +1,4 @@
 import java.time.ZonedDateTime;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -22,7 +20,7 @@ public class ZonalDateTimeOperation {
             if (userAction.equals("1") || userAction.equals("2")) {
                 // prompt user for the date format
                 System.out.println("Enter the format in which you want to feed the date time along with zone" +
-                        "(e.g., dd MM yyyy HH:mm:ss XXX");
+                        "(e.g., dd MM yyyy HH:mm:ss XXX VV)\n");
                 String dateFormatStr = scanner.nextLine();
 
                 // Create a DateTimeFormatter with specified format
@@ -46,7 +44,7 @@ public class ZonalDateTimeOperation {
 
                         // print the parsed dates
                         System.out.println("\nThe given date is " + localDateTime1.format(dateFormat));
-                        System.out.println("\nThe other given date is " + localDateTime1.format(dateFormat));
+                        System.out.println("\nThe other given date is " + localDateTime2.format(dateFormat));
 
                         // check if the dates are equal
                         if (localDateTime1.isEqual(localDateTime2)) {
@@ -61,16 +59,68 @@ public class ZonalDateTimeOperation {
                         System.out.println("Enter which unit of time you want to add/delete:\n" +
                                 "d - days, M - months, y - years, w - weeks");
                         String unitToChange = scanner.nextLine();
+
                         // prompt user to enter the quantity of the selected unit
                         System.out.println("Enter the quantity to change (e.g., 3):");
                         long qtyToChange = Long.parseLong(scanner.nextLine());
 
                         // prompt user to choose whether to add or delete the selected quantity
-                        System.out.println("\nPress 'a' to add, 'd' to delete, +
+                        System.out.println("\nPress 'a' to add, 'd' to delete," +
                                 "\nAny other key to back to the main menu");
-                    }
+                        String addOrDel = scanner.nextLine();
 
+                        // variable to store the modified date and time
+                        ZonedDateTime newDateTime = localDateTime1;
+
+                        // handle the user's choice to add or delete time
+                        if (addOrDel.equals("a")) {
+                            switch (unitToChange) {
+                                case "d":
+                                    newDateTime = localDateTime1.plusDays(qtyToChange);
+                                    break;
+                                case "M":
+                                    newDateTime = localDateTime1.plusMonths(qtyToChange);
+                                    break;
+                                case "y":
+                                    newDateTime = localDateTime1.plusYears(qtyToChange);
+                                    break;
+                                case "w":
+                                    newDateTime = localDateTime1.plusWeeks(qtyToChange);
+                                    break;
+                                default:
+                                    System.out.println("invalid input");
+                                    continue; // go back to main menu
+                            }
+                        } else if (addOrDel.equals("d")) {
+                            switch (unitToChange) {
+                                case "d":
+                                    newDateTime = localDateTime1.minusDays(qtyToChange);
+                                    break;
+                                case "M":
+                                    newDateTime = localDateTime1.minusMonths(qtyToChange);
+                                    break;
+                                case "y":
+                                    newDateTime = localDateTime1.minusYears(qtyToChange);
+                                    break;
+                                case "w":
+                                    newDateTime = localDateTime1.minusWeeks(qtyToChange);
+                                    break;
+                                default:
+                                    System.out.println("invalid input");
+                                    continue;
+                            }
+                        }
+                        // print the modified date and time
+                        System.out.println("The new date and time is: " + newDateTime.format(dateFormat));
+                    }
+                } catch (DateTimeParseException e) {
+                    System.out.println("Invalid input. Please try again! " + e.getMessage());
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid quantity. Please enter a valid number.");
                 }
+            } else {
+                // exit the program
+                break;
             }
         }
         scanner.close();
