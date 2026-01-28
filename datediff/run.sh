@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/datediff/classes
+#export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/datediff/classes
 
 #javac -d classes/ src/DateDiffCalculator.java
 #java DateDiffCalculator
@@ -14,5 +14,8 @@ export CLASSPATH=$CLASSPATH:/home/john/my-projects/coursera-ibm-java-developer/d
 #javac -d classes src/DateTimeOperations.java
 #java DateTimeOperations
 
-javac -d classes src/ZonalDateTimeOperation.java
-java ZonalDateTimeOperation
+#javac -d classes src/ZonalDateTimeOperation.java
+#java ZonalDateTimeOperation
+
+javac -d classes src/TravelPlanner.java
+java TravelPlanner
