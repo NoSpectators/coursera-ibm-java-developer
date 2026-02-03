@@ -8,13 +8,54 @@ import java.time.format.DateTimeParseException;
 
 
 public class MoodTracker {
+    public static boolean editMood(String moodName, LocalDate moodDate, LocalTime moodTime,
+                                   String moodNotes, List<Mood> moodsList) {
+        if (moodNotes == null || moodNotes.strip().isEmpty()) {
+            System.out.println("No notes entered.");
+            return false;
+        }
+
+        boolean moodEdited = false;
+        for (Mood tempMood : moodsList) {
+            if (tempMood.getName().equalsIgnoreCase(moodName)
+                && tempMood.getDate().equals(moodDate)
+                && tempMood.getTime().equals(moodTime)) {
+                tempMood.setNotes(moodNotes);
+                moodEdited = true;
+                break; // stop after first match
+            }
+        }
+        return moodEdited;
+    }
 
     // Because Mood uses UUID-based identity, deletion must operate on existing Mood instances rather than newly constructed objects.
     public static boolean deleteMoodByDate(LocalDate moodDate, List<Mood> moodsList) {
-        return moodsList.removeIf(mood -> mood.getDate().equals(moodDate));
+        // optional lambda syntax
+        //  return moodsList.removeIf(mood -> mood.getDate().equals(moodDate));
+
+        // backwards iteration classic style syntax
+        boolean removed = false;
+        for (int i = moodsList.size() - 1; i >= 0; i--) {
+            Mood mood = moodsList.get(i);
+            if (mood.getDate().equals(moodDate)) {
+                moodsList.remove(i);
+                removed = true;
+            }
+        }
+        return removed;
     }
     public static boolean deleteMood(String moodName, List<Mood> moodsList) {
-        return moodsList.removeIf(mood -> mood.getName().equalsIgnoreCase(moodName)); // equals() is uuid-based so this works
+        // optional lambda syntax
+        // return moodsList.removeIf(mood -> mood.getName().equalsIgnoreCase(moodName)); // equals() is uuid-based so this works
+        boolean removed = false;
+        for (int i = moodsList.size() - 1; i >= 0; i--) {
+            Mood mood = moodsList.get(i);
+            if (mood.getName().equalsIgnoreCase(moodName)) {
+                moodsList.remove(i);
+                removed = true;
+            }
+        }
+        return removed;
     }
 
     public static boolean isMoodValid(Mood mood, List<Mood> moodsList) throws InvalidMoodException {
@@ -135,13 +176,42 @@ public class MoodTracker {
                             System.out.println("Enter the mood name");
                             String moodName = scanner.nextLine();
                             boolean moodDeleted = deleteMood(moodName, moodsList);
+                            if (moodDeleted) {
+                                System.out.println("The mood has been deleted");
+                            } else {
+                                System.out.println("No matching mood found.");
+                            }
                         } catch (Exception e) {
                             System.out.println("unexpected error: " + e.getMessage());
                         }
                     }
                     break;
                 case "e":
-                    continue;
+                    try {
+                        System.out.println("Enter the mood name: ");
+                        String moodName = scanner.nextLine();
+
+                        System.out.println("Enter the date (MM/dd/yyyy)");
+                        LocalDate moodDate = LocalDate.parse(scanner.nextLine(),
+                                DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+
+                        System.out.println("Enter the time (HH:mm:ss):");
+                        LocalTime moodTime = LocalTime.parse(scanner.nextLine(),
+                                DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+                        System.out.println("Add new notes about this mood");
+                        String moodNotes = scanner.nextLine();
+
+                        boolean moodEdited = editMood(moodName, moodDate, moodTime, moodNotes, moodsList);
+                        if (moodEdited) {
+                            System.out.println("The mood has been edited");
+                        } else {
+                            System.out.println("No matching mood found.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error editing mood: " + e.getMessage());
+                    }
+                    break;
                 case "s":
                     continue;
                 case "m":
