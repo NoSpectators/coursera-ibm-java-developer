@@ -9,6 +9,14 @@ import java.time.format.DateTimeParseException;
 
 public class MoodTracker {
 
+    // Because Mood uses UUID-based identity, deletion must operate on existing Mood instances rather than newly constructed objects.
+    public static boolean deleteMoodByDate(LocalDate moodDate, List<Mood> moodsList) {
+        return moodsList.removeIf(mood -> mood.getDate().equals(moodDate));
+    }
+    public static boolean deleteMood(String moodName, List<Mood> moodsList) {
+        return moodsList.removeIf(mood -> mood.getName().equalsIgnoreCase(moodName)); // equals() is uuid-based so this works
+    }
+
     public static boolean isMoodValid(Mood mood, List<Mood> moodsList) throws InvalidMoodException {
         for (Mood tempMood : moodsList) {
             if (tempMood.equals(mood)) { // check for duplicates
@@ -98,10 +106,40 @@ public class MoodTracker {
                         }
                     } catch (InvalidMoodException ime) {
                         System.out.println("The mood is not valid!");
+                        continue;
                     }
                     break; // exit the 'a' case
                 case "d":
-                    continue;
+                    System.out.println("Enter '1' to delete all moods by date\n"+
+                                       "Enter '2' to delete a specific mood");
+                    String deleteVariant = scanner.nextLine().toLowerCase();
+                    if (deleteVariant.equals("1")) {
+                        try {
+                            System.out.println("Input the date in MM/dd/yyyy format");
+                            String moodDateStr = scanner.nextLine();
+                            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                            LocalDate moodDate = LocalDate.parse(moodDateStr, dateFormatter); // parse date based on given pattern
+
+                            boolean moodsDeleted = deleteMoodByDate(moodDate, moodsList);
+                            if (moodsDeleted) {
+                                System.out.println("The moods have been deleted");
+                            } else {
+                                System.out.println("No matching moods found");
+                            }
+                        } catch (DateTimeParseException dtpe) {
+                            System.out.println("Incorrect format. Cannot delete mood.");
+                            continue;
+                        }
+                    } else if (deleteVariant.equals("2")) {
+                        try {
+                            System.out.println("Enter the mood name");
+                            String moodName = scanner.nextLine();
+                            boolean moodDeleted = deleteMood(moodName, moodsList);
+                        } catch (Exception e) {
+                            System.out.println("unexpected error: " + e.getMessage());
+                        }
+                    }
+                    break;
                 case "e":
                     continue;
                 case "s":

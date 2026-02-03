@@ -1,40 +1,37 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 public class Mood {
-    private String name;
+    private final UUID id; // can't ever change once set
+    private final String name;
     private LocalDate date = LocalDate.now();
     private LocalTime time = LocalTime.MIDNIGHT;
     private String notes;
 
     // Overload the constructors below with various arguments
     public Mood(String name) {
-        this.name = name;
-    }
- 
-    public Mood(String name, LocalDate date) {
-        this.name = name;
-        this.date = date;
-    }
-    
-    public Mood(String name, LocalDate date, LocalTime time) {
-        this.name = name;
-        this.date = date;
-        this.time = time;
+        this(name, LocalDate.now(), LocalTime.MIDNIGHT, null);
     }
 
     public Mood(String name, String notes) {
-        this.name = name;
-        this.notes = notes;
+        this(name, LocalDate.now(), LocalTime.MIDNIGHT, notes);
     }
-    
+
+    public Mood(String name, LocalDate date) {
+        this(name, date, LocalTime.MIDNIGHT, null);
+    }
+
+    public Mood(String name, LocalDate date, LocalTime time) {
+        this(name, date, time, null);
+    }
+
     public Mood(String name, LocalDate date, String notes) {
-        this.name = name;
-        this.date = date;
-        this.notes = notes;
+        this(name, date, LocalTime.MIDNIGHT, notes);
     }
 
     public Mood(String name, LocalDate date, LocalTime time, String notes) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.date = date;
         this.time = time;
@@ -42,6 +39,10 @@ public class Mood {
     }
 
     // getters and setters
+    public UUID getId() {
+        return this.id;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -75,14 +76,18 @@ public class Mood {
         return name + " - " + date + "  " + time + "\n" + notes;
     }
 
-    public boolean equals(Mood mood) {
-        if (mood.name.equalsIgnoreCase(this.name) &&
-        mood.getDate().equals(this.date) &&
-        mood.getTime().equals(this.time)) {
-            return true;
-        } else {
-            return false;
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // same reference - equal
+        if (!(o instanceof Mood)) return false; // null or different type
+        Mood mood = (Mood) o;
+        return this.id.equals(mood.id);
     }
+    // required for above override
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }
 
