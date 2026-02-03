@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -279,7 +282,14 @@ public class MoodTracker {
                     }
                     break;
                 case "w":
-                    continue;
+                    try (PrintWriter writer = new PrintWriter(new FileWriter("moods.txt"))) {
+                        for (Mood mood : moodsList) {
+                            writer.println(mood+"\n\n"); // give a space between each mood
+                        }
+                        System.out.println("The entries are written to a file");
+                    } catch (IOException e) {
+                        System.out.println("Error writing to a file: " + e.getMessage());
+                    }
                 case "exit":
                     System.out.println("Thank you for using the MoodTracker. Goodbye!");
                     running = false; // alert app to quit
