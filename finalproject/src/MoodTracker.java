@@ -8,6 +8,35 @@ import java.time.format.DateTimeParseException;
 
 
 public class MoodTracker {
+
+    public static void searchMoodsByDate(LocalDate moodDate, List<Mood> moodsList) {
+        boolean found = false;
+        for (Mood tempMood : moodsList) {
+            if (tempMood.getDate().equals(moodDate)) {
+                found = true;
+                System.out.println(tempMood);
+            }
+        }
+        if (!found) {
+            System.out.println("No matching moods found!");
+        }
+    }
+
+    public static void searchMoods(String moodName, LocalDate moodDate, LocalTime moodTime, List<Mood> moodsList) {
+        boolean found = false;
+        for (Mood tempMood : moodsList) {
+            if (tempMood.getName().equalsIgnoreCase(moodName)
+                    && tempMood.getDate().equals(moodDate)
+                    && tempMood.getTime().equals(moodTime)) {
+                found = true;
+                System.out.println(tempMood); // leave out break statement in case more than 1 match
+            }
+        }
+        if (!found) {
+            System.out.println("No matching moods found");
+        }
+    }
+
     public static boolean editMood(String moodName, LocalDate moodDate, LocalTime moodTime,
                                    String moodNotes, List<Mood> moodsList) {
         if (moodNotes == null || moodNotes.strip().isEmpty()) {
@@ -78,14 +107,12 @@ public class MoodTracker {
         if (isForCurrentDate.equals("y")) { // mood for a specific date/time
             try {
                 System.out.println("Input the date in MM/dd/yyyy format:");
-                String moodDateStr = scanner.nextLine();
-                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); // get date format
-                LocalDate moodDate = LocalDate.parse(moodDateStr, dateFormatter); // parse local date from dateFormatter
+                LocalDate moodDate = LocalDate.parse(scanner.nextLine(),
+                        DateTimeFormatter.ofPattern("MM/dd/yyyy")); // parse local date from dateFormatter
 
                 System.out.println("Input the time in HH:mm:ss format:");
-                String moodTimeStr = scanner.nextLine();
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss"); // get time format
-                LocalTime moodTime = LocalTime.parse(moodTimeStr, timeFormatter); // parse local time from timeFormatter
+                LocalTime moodTime = LocalTime.parse(scanner.nextLine(),
+                        DateTimeFormatter.ofPattern("HH:mm:ss")); // parse local time from timeFormatter
 
                 System.out.println("Add notes about this mood");
                 String moodNotes = scanner.nextLine().strip();
@@ -157,9 +184,8 @@ public class MoodTracker {
                     if (deleteVariant.equals("1")) {
                         try {
                             System.out.println("Input the date in MM/dd/yyyy format");
-                            String moodDateStr = scanner.nextLine();
-                            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                            LocalDate moodDate = LocalDate.parse(moodDateStr, dateFormatter); // parse date based on given pattern
+                            LocalDate moodDate = LocalDate.parse(scanner.nextLine(),
+                                    DateTimeFormatter.ofPattern("MM/dd/yyyy")); // parse date based on given pattern
 
                             boolean moodsDeleted = deleteMoodByDate(moodDate, moodsList);
                             if (moodsDeleted) {
@@ -210,10 +236,43 @@ public class MoodTracker {
                         }
                     } catch (Exception e) {
                         System.out.println("Error editing mood: " + e.getMessage());
+                        continue;
                     }
                     break;
                 case "s":
-                    continue;
+                    System.out.println("Enter '1' to search all moods by date\n" +
+                                       "Enter '2' to search for a specific mood");
+                    String searchVariant = scanner.nextLine();
+                    if (searchVariant.equals("1")) {
+                        try {
+                            System.out.println("Input the date in MM/dd/yyy format:");
+                            LocalDate moodDate = LocalDate.parse(scanner.nextLine(),
+                                    DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                            searchMoodsByDate(moodDate, moodsList);
+                        } catch (DateTimeParseException dtpe) {
+                            System.out.println("Incorrect format for date. Cannot search mood.");
+                            continue;
+                        }
+                    } else if (searchVariant.equals("2")) {
+                        try {
+                            System.out.println("Enter the mood name");
+                            String moodName = scanner.nextLine();
+
+                            System.out.println("Input the date in MM/dd/yyy format:");
+                            LocalDate moodDate = LocalDate.parse(scanner.nextLine(),
+                                    DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+
+                            System.out.println("Input the time in HH:mm:ss format:");
+                            LocalTime moodTime = LocalTime.parse(scanner.nextLine(),
+                                    DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+                            searchMoods(moodName, moodDate, moodTime, moodsList);
+                        } catch (DateTimeParseException dtpe) {
+                            System.out.println("Incorrect format for date or time. Cannot search mood.");
+                            continue;
+                        }
+                    }
+                    break;
                 case "m":
                     continue;
                 case "w":
