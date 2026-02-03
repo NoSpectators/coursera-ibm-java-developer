@@ -274,7 +274,10 @@ public class MoodTracker {
                     }
                     break;
                 case "m":
-                    continue;
+                    for (Mood moodObj : moodsList) {
+                        System.out.println(moodObj);
+                    }
+                    break;
                 case "w":
                     continue;
                 case "exit":
